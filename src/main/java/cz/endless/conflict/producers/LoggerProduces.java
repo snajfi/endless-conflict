@@ -4,12 +4,14 @@ package cz.endless.conflict.producers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
 
 /**
  * Created by snajfi1 on 18.12.2017.
  */
+@ApplicationScoped
 public class LoggerProduces {
 
     @Produces
