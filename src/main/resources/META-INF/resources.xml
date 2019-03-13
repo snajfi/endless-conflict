@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+
+    <!-- inmemory local development-->
+    <Resource id="jdbc/endless_conflict" type="DataSource">
+        JdbcDriver = org.hsqldb.jdbcDriver
+        JdbcUrl = jdbc:hsqldb:mem:endless_conflict
+        UserName = SA
+        Password =
+    </Resource>
+
+
+    <!-- production
+    <Resource id="jdbc/endless_conflict" type="DataSource">
+        JdbcDriver = org.postgresql.Driver
+        JdbcUrl = jdbc:postgresql://localhost:5432/endlessconflict
+        UserName = endlessconflictuser
+        Password = endless13579
+    </Resource>
+    -->
+</resources>
