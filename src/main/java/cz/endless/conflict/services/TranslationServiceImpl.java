@@ -22,13 +22,12 @@ public class TranslationServiceImpl implements TranslationService {
 
     private ResourceBundle bundle = null;
 
-    @PostConstruct
-    public void init() {
-        loadResourceBundle();
-    }
-
     public String getTranslationForKey(String resourceKey, String... params) {
         String translation = "";
+
+        if (bundle==null) {
+            loadResourceBundle();
+        }
 
         if (!isBlank(resourceKey)) {
 
