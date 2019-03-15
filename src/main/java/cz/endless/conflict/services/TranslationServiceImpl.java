@@ -2,7 +2,6 @@ package cz.endless.conflict.services;
 
 import org.apache.logging.log4j.Logger;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.text.MessageFormat;
