@@ -15,15 +15,30 @@
     </application>
 
     <navigation-rule>
-
         <from-view-id>*</from-view-id>
         <navigation-case>
             <from-outcome>main</from-outcome>
             <to-view-id>/main.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
+    </navigation-rule>
 
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>ageCreation</from-outcome>
+            <to-view-id>/ageCreation.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
 
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>ageAdministration</from-outcome>
+            <to-view-id>/ageAdministration.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
     </navigation-rule>
 
 

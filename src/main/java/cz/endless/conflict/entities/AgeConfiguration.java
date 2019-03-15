@@ -8,22 +8,28 @@ import java.util.Objects;
 /**
  * Created by dobeji1 on 13.03.2019.
  */
+@NamedQueries({
+        @NamedQuery(name = AgeConfiguration.GET_ALL_AGE_CONFIGURATIONS,
+                query = "select ac from AgeConfiguration ac"),
+        @NamedQuery(name = AgeConfiguration.GET_AGE_CONFIGURATION_BY_ID,
+                query = "select ac from AgeConfiguration ac where ac.id = :id")
+})
 @Table(name = "AGE_CONFIGURATION")
 @Entity
 public class AgeConfiguration implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    public static final String GET_ALL_AGE_CONFIGURATIONS = "AgeConfiguration.GET_ALL_AGE_CONFIGURATIONS";
+    public static final String GET_AGE_CONFIGURATION_BY_ID = "AgeConfiguration.GET_AGE_CONFIGURATION_BY_ID";
+
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "STARTED_AT")
-    private Date startedAt;
-
-    @Column(name = "ENDED_AT")
-    private Date endeddAt;
+    @Column(name = "NAME")
+    private String name;
 
     @Column(name = "ROUND_STACK")
     private int roundStack;
@@ -53,20 +59,12 @@ public class AgeConfiguration implements Serializable {
         this.id = id;
     }
 
-    public Date getStartedAt() {
-        return startedAt;
+    public String getName() {
+        return name;
     }
 
-    public void setStartedAt(Date startedAt) {
-        this.startedAt = startedAt;
-    }
-
-    public Date getEndeddAt() {
-        return endeddAt;
-    }
-
-    public void setEndeddAt(Date endeddAt) {
-        this.endeddAt = endeddAt;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getRoundStack() {
