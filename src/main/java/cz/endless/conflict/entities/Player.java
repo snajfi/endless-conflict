@@ -13,16 +13,6 @@ public class Player implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Player() {
-    }
-
-    public Player(String nickname, String login, String password, String email) {
-        this.nickname = nickname;
-        this.login = login;
-        this.password = password;
-        this.email = email;
-    }
-
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -39,6 +29,7 @@ public class Player implements Serializable {
 
     @Column(name = "EMAIL", nullable = false)
     private String email;
+
 
     @Override
     public boolean equals(Object o) {
