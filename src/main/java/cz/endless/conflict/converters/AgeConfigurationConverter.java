@@ -23,8 +23,8 @@ public class AgeConfigurationConverter implements Converter {
 
     @Override
     public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String s) {
-        AgeConfiguration foundedAgeConfiguration = null;
-        if (s!=null && !s.isEmpty()) {
+        AgeConfiguration foundedAgeConfiguration = new AgeConfiguration();
+        if (s!=null && !s.isEmpty() && !s.equals("null")) {
             Long id = Long.valueOf(s);
             foundedAgeConfiguration = ageService.getAgeConfigurationById(id);
         }
@@ -34,7 +34,7 @@ public class AgeConfigurationConverter implements Converter {
     @Override
     public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object o) {
         if (o instanceof AgeConfiguration) {
-            return ((AgeConfiguration) o ).getId().toString();
+            return String.valueOf(((AgeConfiguration) o).getId());
         }
         return "";
     }

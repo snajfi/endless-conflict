@@ -19,6 +19,9 @@
         <p:column headerText="Description">
             <h:outputText value="#{age.description}"/>
         </p:column>
+        <p:column headerText="Age configuration">
+            <h:outputText value="#{age.ageConfiguration.name}"/>
+        </p:column>
         <p:column headerText="Creation date">
             <h:outputText value="#{age.creationDate}">
                 <f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
@@ -33,6 +36,9 @@
         <f:facet name="header">
             Ages Configuration
         </f:facet>
+        <p:column headerText="Name">
+            <h:outputText value="#{ageConfiguration.name}"/>
+        </p:column>
         <p:column headerText="Stack size">
             <h:outputText value="#{ageConfiguration.roundStack}"/>
         </p:column>

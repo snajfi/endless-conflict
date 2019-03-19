@@ -34,6 +34,18 @@ public class AgeServiceImpl implements AgeService {
     }
 
     @Override
+    public Age getAgeByNumber(int number) {
+        TypedQuery<Age> query = entityManager.createNamedQuery(Age.GET_AGE_BY_NUMBER,Age.class);
+        query.setParameter("number", number);
+        List<Age> resultList = query.getResultList();
+        if (!resultList.isEmpty()) {
+            return resultList.get(0);
+
+        }
+        return null;
+    }
+
+    @Override
     public List<Age> getAllAges() {
         return entityManager.createNamedQuery(Age.GET_ALL_AGES,Age.class).getResultList();
     }
@@ -59,5 +71,17 @@ public class AgeServiceImpl implements AgeService {
     @Override
     public List<AgeConfiguration> getAllAgesConfigurations() {
         return entityManager.createNamedQuery(AgeConfiguration.GET_ALL_AGE_CONFIGURATIONS,AgeConfiguration.class).getResultList();
+    }
+
+    @Override
+    public int getNextAgeNumber() {
+        TypedQuery<Integer> query = entityManager.createNamedQuery(Age.GET_LAST_AGE_NUMBER,Integer.class);
+        List<Integer> resultList = query.getResultList();
+        if (!resultList.isEmpty()) {
+            return resultList.get(0) + 1;
+        }
+        else {
+            return 1;
+        }
     }
 }

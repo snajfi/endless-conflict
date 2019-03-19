@@ -8,6 +8,12 @@
         UserName = SA
         Password =
     </Resource>
+    <Resource id="jdbc/endless_conflict_file" type="DataSource">
+        JdbcDriver = org.hsqldb.jdbcDriver
+        JdbcUrl = jdbc:hsqldb:file:C:/projects/temp/db/endless_conflict
+        UserName = SA
+        Password =
+    </Resource>
 
 
     <!-- production

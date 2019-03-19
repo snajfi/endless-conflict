@@ -11,7 +11,11 @@ import java.util.Objects;
  */
 @NamedQueries({
         @NamedQuery(name = Age.GET_ALL_AGES,
-                query = "select a from Age a")
+                query = "select a from Age a "),
+        @NamedQuery(name = Age.GET_LAST_AGE_NUMBER,
+                query = "select max(a.number) from Age a"),
+        @NamedQuery(name = Age.GET_AGE_BY_NUMBER,
+                query = "select a from Age a where a.number = :number")
 })
 @Table(name = "AGE")
 @Entity
@@ -20,13 +24,15 @@ public class Age implements Serializable {
     private static final long serialVersionUID = 1L;
 
     public static final String GET_ALL_AGES = "Age.GET_ALL_AGES";
+    public static final String GET_LAST_AGE_NUMBER = "Age.GET_LAST_AGE_NUMBER";
+    public static final String GET_AGE_BY_NUMBER = "Age.GET_AGE_BY_NUMBER";
 
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "NUMBER", nullable = false)
+    @Column(name = "NUMBER", nullable = false, unique = true)
     private int number;
 
     @Column(name = "DESCRIPTION")

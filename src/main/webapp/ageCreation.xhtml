@@ -10,31 +10,37 @@
 <h:body>
 
     <h:form>
+        <p:messages id="messages">
+            <p:autoUpdate />
+        </p:messages>
         <p:panelGrid columns="2">
-            <h:outputText value="Number" />
+            <h:outputText value="Number" required="true" />
             <p:inputText value="#{ageBean.newAge.number}" />
 
             <h:outputText value="Description" />
             <p:inputText value="#{ageBean.newAge.description}" />
 
-            <h:outputText value="Started at" />
+            <h:outputText value="Started at" required="true" />
             <p:calendar value="#{ageBean.newAge.startedAt}" pattern="dd.MM.yyyy HH:mm" widgetVar="startedAtCalendar" mindate="#{ageBean.today()}"/>
 
             <h:outputText value="Configuration" />
-            <p:selectOneMenu value="#{ageBean.newAge.ageConfiguration}" converter="#{ageConfigurationConverter}">
-                <f:selectItem value="#{ageBean.newAge.ageConfiguration}" var="ageConfiguration" itemLabel="New configuration" itemValue="#{ageConfiguration}" />
+            <p:selectOneMenu value="#{ageBean.ageConfiguration}" converter="#{ageConfigurationConverter}">
+                <f:selectItem itemLabel="New configuration" itemValue="#{ageBean.nullAgeConfiguration}" />
                 <f:selectItems value="#{ageBean.ageConfigurations}" var="ageConfiguration" itemLabel="#{ageConfiguration.name}" itemValue="#{ageConfiguration}"/>
-                <p:ajax update="@form" event="change"/>
+                <p:ajax update="confName confStackSize confLocked" listener="#{ageBean.configurationChange}" event="change"/>
             </p:selectOneMenu>
 
             <h:outputText value="Configuration name" />
-            <p:inputText value="#{ageBean.newAge.ageConfiguration.name}" disabled="#{ageBean.newAge.ageConfiguration.id ne null}"/>
+            <p:inputText id="confName" value="#{ageBean.ageConfiguration.name}" required="true"
+                         disabled="#{ageBean.ageConfiguration.id ne null}"/>
             <h:outputText value="Stack size" />
-            <p:inputText value="#{ageBean.newAge.ageConfiguration.roundStack}" disabled="#{ageBean.newAge.ageConfiguration.id ne null}" />
+            <p:inputText id="confStackSize" value="#{ageBean.ageConfiguration.roundStack}" required="true"
+                         disabled="#{ageBean.ageConfiguration.id ne null}" />
             <h:outputText value="Locked stack size" />
-            <p:inputText value="#{ageBean.newAge.ageConfiguration.lockedStack}" disabled="#{ageBean.newAge.ageConfiguration.id ne null}"/>
+            <p:inputText id="confLocked" value="#{ageBean.ageConfiguration.lockedStack}" required="true"
+                         disabled="#{ageBean.ageConfiguration.id ne null}"/>
 
-            <p:commandButton value="Save" action="#{ageBean.saveNewAge}" />
+            <p:commandButton value="Save" action="#{ageBean.saveNewAge}" update="messages" />
         </p:panelGrid>
     </h:form>
 

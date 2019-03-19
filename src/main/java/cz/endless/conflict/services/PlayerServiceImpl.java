@@ -2,12 +2,14 @@ package cz.endless.conflict.services;
 
 import cz.endless.conflict.entities.Player;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
  * Created by snajfi on 18.3.2019.
  */
+@ApplicationScoped
 public class PlayerServiceImpl implements PlayerService {
 
     @PersistenceContext(unitName = "endless_conflict")

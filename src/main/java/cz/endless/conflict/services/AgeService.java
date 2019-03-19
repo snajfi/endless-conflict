@@ -13,6 +13,8 @@ public interface AgeService {
 
     Age createNewAge(Age age);
 
+    Age getAgeByNumber(int number);
+
     List<Age> getAllAges();
 
     AgeConfiguration createNewAgeConfiguration(AgeConfiguration ageConfiguration);
@@ -20,5 +22,7 @@ public interface AgeService {
     AgeConfiguration getAgeConfigurationById(Long id);
 
     List<AgeConfiguration> getAllAgesConfigurations();
+
+    int getNextAgeNumber();
 
 }
