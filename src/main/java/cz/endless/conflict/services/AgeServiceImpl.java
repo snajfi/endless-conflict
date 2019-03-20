@@ -1,11 +1,9 @@
 package cz.endless.conflict.services;
 
-import cz.endless.conflict.entities.Age;
-import cz.endless.conflict.entities.AgeConfiguration;
-import org.apache.logging.log4j.Logger;
+import cz.endless.conflict.entities.age.Age;
+import cz.endless.conflict.entities.age.AgeConfiguration;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -21,10 +19,6 @@ public class AgeServiceImpl implements AgeService {
 
     @PersistenceContext(unitName = "endless_conflict")
     private EntityManager entityManager;
-
-    @Inject
-    private Logger logger;
-
 
     @Override
     @Transactional

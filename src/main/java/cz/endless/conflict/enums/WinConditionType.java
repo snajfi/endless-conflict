@@ -1,7 +1,14 @@
 package cz.endless.conflict.enums;
 
+import cz.endless.conflict.helper.EnumTranslator;
+
 public enum WinConditionType {
-    PRESS,
-    ALI_PRESS,
-    AMOUNT_OF_SOLDIERS
+    PRESTIGE,
+    ALI_PRESTIGE,
+    AMOUNT_OF_SOLDIERS;
+
+
+    public String getKey() {
+        return EnumTranslator.getMessageKey(this);
+    }
 }

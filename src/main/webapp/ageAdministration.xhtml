@@ -13,6 +13,9 @@
         <f:facet name="header">
             Ages
         </f:facet>
+        <p:column style="width:16px">
+            <p:rowToggler />
+        </p:column>
         <p:column headerText="Number">
             <h:outputText value="#{age.number}"/>
         </p:column>
@@ -27,6 +30,28 @@
                 <f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
             </h:outputText>
         </p:column>
+        <p:column headerText="Start date">
+            <h:outputText value="#{age.startedAt}">
+                <f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+            </h:outputText>
+        </p:column>
+        <p:column headerText="Win conditions">
+            <ui:repeat value="#{age.winConditions.winCondition}" var="winCondition">
+                <h:outputText value="#{msg[winCondition.winConditionType]} - #{winCondition.value}" /><br/>
+            </ui:repeat>
+        </p:column>
+        <p:rowExpansion>
+
+            <p:panelGrid columns="2" style="width: 50%">
+                <f:facet name="header">
+                    Age configuration
+                </f:facet>
+                <h:outputText value="Stack size"/>
+                <h:outputText value="#{age.ageConfiguration.roundStack}"/>
+                <h:outputText value="Locked stack"/>
+                <h:outputText value="#{age.ageConfiguration.lockedStack}"/>
+            </p:panelGrid>
+        </p:rowExpansion>
 
     </p:dataTable>
 

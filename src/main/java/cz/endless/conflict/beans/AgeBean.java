@@ -1,7 +1,9 @@
 package cz.endless.conflict.beans;
 
-import cz.endless.conflict.entities.Age;
-import cz.endless.conflict.entities.AgeConfiguration;
+import cz.endless.conflict.entities.age.Age;
+import cz.endless.conflict.entities.age.AgeConfiguration;
+import cz.endless.conflict.entities.age.WinCondition;
+import cz.endless.conflict.entities.age.WinConditions;
 import cz.endless.conflict.services.AgeService;
 import cz.endless.conflict.services.UtilsService;
 
@@ -13,6 +15,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -40,6 +43,7 @@ public class AgeBean implements Serializable {
         ageConfigurations = ageService.getAllAgesConfigurations();
         newAge = new Age();
         newAge.setNumber(ageService.getNextAgeNumber());
+        newAge.setWinConditions(new WinConditions());
         ageConfiguration = new AgeConfiguration();
         nullAgeConfiguration = new AgeConfiguration();
     }
@@ -49,6 +53,12 @@ public class AgeBean implements Serializable {
     }
 
     public String saveNewAge() {
+        for (WinCondition winCondition : newAge.getWinConditions().getWinCondition()) {
+            if (winCondition.getWinConditionType() == null || winCondition.getWinConditionType().equals("")) {
+                utilsService.addLocalizedMessage("errorWinConditionMustBeFilled", FacesMessage.SEVERITY_ERROR);
+                return "";
+            }
+        }
         if (ageService.getAgeByNumber(newAge.getNumber()) == null) {
             newAge.setAgeConfiguration(ageConfiguration);
             ageService.createNewAge(newAge);
@@ -57,7 +67,17 @@ public class AgeBean implements Serializable {
             utilsService.addLocalizedMessage("errorNumberMustBeUnique", FacesMessage.SEVERITY_ERROR, String.valueOf(newAge.getNumber()));
             return "";
         }
+    }
 
+    public void addNewWinCondition() {
+        if (newAge.getWinConditions().getWinCondition() == null) {
+            newAge.getWinConditions().setWinCondition(new ArrayList<>());
+        }
+        newAge.getWinConditions().getWinCondition().add(new WinCondition());
+    }
+
+    public void deleteCondition(int index) {
+        newAge.getWinConditions().getWinCondition().remove(index);
     }
 
     public void configurationChange (AjaxBehaviorEvent e){
