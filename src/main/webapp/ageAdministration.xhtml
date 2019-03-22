@@ -36,6 +36,7 @@
             </h:outputText>
         </p:column>
         <p:column headerText="Win conditions">
+            <h:outputText value="Required:&lt;br/&gt;" escape="false" rendered="#{age.winConditions.allRequired}"/>
             <ui:repeat value="#{age.winConditions.winCondition}" var="winCondition">
                 <h:outputText value="#{msg[winCondition.winConditionType]} - #{winCondition.value}" /><br/>
             </ui:repeat>

@@ -54,6 +54,10 @@
                                    action="#{ageBean.addNewWinCondition}" style="float: right; text-decoration: none;">
                     </p:commandLink>
             </f:facet>
+            <p:panelGrid columns="2" style="border: none;">
+                <h:outputText value="Required? " />
+                <p:selectBooleanCheckbox value="#{ageBean.newAge.winConditions.allRequired}" />
+            </p:panelGrid>
             <p:dataTable value="#{ageBean.newAge.winConditions.winCondition}" emptyMessage="" editMode="cell"
                          id="winConditionTable" rowIndexVar="rowId"
                          var="winCondition" editable="true" widgetVar="winConditionTable">
