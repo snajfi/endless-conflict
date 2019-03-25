@@ -1,8 +1,9 @@
-package cz.endless.conflict.entities;
+package cz.endless.conflict.entities.age;
+
+import cz.endless.conflict.entities.Player;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.DatabaseMetaData;
 import java.util.Date;
 import java.util.Objects;
 
@@ -49,11 +50,16 @@ public class Age implements Serializable {
     private Date startedAt;
 
     @Column(name = "ENDED_AT")
-    private Date endeddAt;
+    private Date endedAt;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "AGE_CONFIGURATION_ID")
     private AgeConfiguration ageConfiguration;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "WIN_CONDITIONS_ID")
+    private WinConditions winConditions;
+
 
     @Override
     public boolean equals(Object o) {
@@ -116,12 +122,12 @@ public class Age implements Serializable {
         this.startedAt = startedAt;
     }
 
-    public Date getEndeddAt() {
-        return endeddAt;
+    public Date getEndedAt() {
+        return endedAt;
     }
 
-    public void setEndeddAt(Date endeddAt) {
-        this.endeddAt = endeddAt;
+    public void setEndedAt(Date endeddAt) {
+        this.endedAt = endeddAt;
     }
 
     public AgeConfiguration getAgeConfiguration() {
@@ -130,5 +136,13 @@ public class Age implements Serializable {
 
     public void setAgeConfiguration(AgeConfiguration ageConfiguration) {
         this.ageConfiguration = ageConfiguration;
+    }
+
+    public WinConditions getWinConditions() {
+        return winConditions;
+    }
+
+    public void setWinConditions(WinConditions winConditions) {
+        this.winConditions = winConditions;
     }
 }

@@ -1,7 +1,7 @@
 package cz.endless.conflict.services;
 
-import cz.endless.conflict.entities.Age;
-import cz.endless.conflict.entities.AgeConfiguration;
+import cz.endless.conflict.entities.age.Age;
+import cz.endless.conflict.entities.age.AgeConfiguration;
 
 import java.util.List;
 

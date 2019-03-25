@@ -1,6 +1,6 @@
 package cz.endless.conflict.converters;
 
-import cz.endless.conflict.entities.AgeConfiguration;
+import cz.endless.conflict.entities.age.AgeConfiguration;
 import cz.endless.conflict.services.AgeService;
 
 import javax.enterprise.context.ApplicationScoped;
