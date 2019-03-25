@@ -64,16 +64,6 @@ public enum Race {
     }
 
 
-    public List<Research> getAllResearchesForNation() {
-        List<Research> researchList = new ArrayList<>();
-        for (Research research : Research.values()) {
-            if (research.getForRaces().contains(this)) {
-                researchList.add(research);
-            }
-        }
-        return researchList;
-    }
-
     public List<BonusPojo> getNationBonusesOfGivenType(BonusType bonusType) {
         return nationBonuses.stream()
                 .filter(bonusPojo -> bonusPojo.getBonusType().equals(bonusType))
