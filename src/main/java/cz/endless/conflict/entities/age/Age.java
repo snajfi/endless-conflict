@@ -50,7 +50,7 @@ public class Age implements Serializable {
     private Date startedAt;
 
     @Column(name = "ENDED_AT")
-    private Date endeddAt;
+    private Date endedAt;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "AGE_CONFIGURATION_ID")
@@ -122,12 +122,12 @@ public class Age implements Serializable {
         this.startedAt = startedAt;
     }
 
-    public Date getEndeddAt() {
-        return endeddAt;
+    public Date getEndedAt() {
+        return endedAt;
     }
 
-    public void setEndeddAt(Date endeddAt) {
-        this.endeddAt = endeddAt;
+    public void setEndedAt(Date endeddAt) {
+        this.endedAt = endeddAt;
     }
 
     public AgeConfiguration getAgeConfiguration() {
