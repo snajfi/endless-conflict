@@ -13,9 +13,7 @@ public enum Resource {
     GOLD("Gold",false,5,0),
     FOOD("Food",true,5,10),
     WOOD("Wood",true,5,10),
-    MANA("Mana",false,3,10),
-    RESEARCH_POINT("Research point",true,1,10),
-    POINT_OF_CONSTRUCTION("Point of construction",true,1,10);
+    RESEARCH_POINT("Research point",true,1,10);
 
 
     private String name;

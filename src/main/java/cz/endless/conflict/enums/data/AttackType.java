@@ -15,7 +15,7 @@ public enum AttackType {
     NORMAL_ATTACK,NIGHT_AMBUSH,SHOOTING,HUNTING_PATROL,TRAPPING,DRAGONS_RAID,DRAGONS_DESTRUCTION;
 
     static {
-        NORMAL_ATTACK.unitsWhichCanAttack(new Unit[]{Unit.WARRIOR, Unit.ARCHER, Unit.CAVALRY, Unit.DRAGON_RIDER})
+        NORMAL_ATTACK.unitsWhichCanAttack(new Unit[]{Unit.WARRIOR, Unit.ARCHER, Unit.CAVALRY})
                      .unitsWhichCanDefend(Unit.values())
 
                      .addBonusTypesAffectsAttacker(Arrays.asList(
@@ -113,47 +113,6 @@ public enum AttackType {
                         BonusType.TACTIC_DEFENSE,
                         BonusType.TRAPPING_DEFENSE
                 ));
-
-        DRAGONS_RAID.unitsWhichCanAttack(Unit.DRAGON_RIDER)
-                .unitsWhichCanDefend(new Unit[] {Unit.ARCHER,Unit.SHOOTER_TOWER})
-                .addAttackerArmyConsequence(Unit.DRAGON_RIDER,0,0.35)
-                .addDefenderArmyConsequence(Unit.ARCHER,0,0.15)
-                .addDefenderArmyConsequence(Unit.SHOOTER_TOWER, 0, 0.25)
-
-                .addDefendersLandConsequence(CountryAttribute.HAPPINESS, 0, 0, -0.07)
-                // TODO destroy watch tower?
-
-                .addBonusTypesAffectsAttacker(Arrays.asList(
-                        BonusType.TACTIC_STRENGTH,
-                        BonusType.TACTIC_ATTACK,
-                        BonusType.ARMY_STRENGTH
-                ))
-
-                .addBonusTypesAffectsDefender(Arrays.asList(
-                        BonusType.ARMY_STRENGTH,
-                        BonusType.TACTIC_STRENGTH,
-                        BonusType.TACTIC_DEFENSE
-                ));
-
-        DRAGONS_DESTRUCTION.unitsWhichCanAttack(Unit.DRAGON_RIDER)
-                .unitsWhichCanDefend(new Unit[] {Unit.ARCHER,Unit.SHOOTER_TOWER})
-                .addAttackerArmyConsequence(Unit.DRAGON_RIDER,0,0.45)
-                .addDefenderArmyConsequence(Unit.ARCHER,0,0.10)
-                .addDefenderArmyConsequence(Unit.SHOOTER_TOWER, 0, 0.15)
-
-                // TODO destroy buildings and resources
-
-                .addBonusTypesAffectsAttacker(Arrays.asList(
-                        BonusType.TACTIC_STRENGTH,
-                        BonusType.TACTIC_ATTACK,
-                        BonusType.ARMY_STRENGTH
-                ))
-
-                .addBonusTypesAffectsDefender(Arrays.asList(
-                        BonusType.ARMY_STRENGTH,
-                        BonusType.TACTIC_STRENGTH,
-                        BonusType.TACTIC_DEFENSE
-                        ));
 
     }
 

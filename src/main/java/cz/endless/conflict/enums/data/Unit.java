@@ -17,8 +17,6 @@ public enum Unit {
                 new MaintenanceBuilder(Resource.GOLD,0.001).add(Resource.FOOD,0.001).add(Resource.WOOD,0.001).build()),
     CAVALRY(3,2,3,true,0.5,"cavalry_description",
                 new MaintenanceBuilder(Resource.GOLD,0.05).add(Resource.FOOD,0.005).build()),
-    DRAGON_RIDER(4,4,4,true,1.5,"dragon_rider_description",
-                new MaintenanceBuilder(Resource.GOLD,0.008).add(Resource.FOOD,0.001).build()),
     SHOOTER_TOWER(0,4,3,true,0.5,"shooter_tower_description",
                 new MaintenanceBuilder(Resource.GOLD,0.05).add(Resource.FOOD,0.005).build());
 
