@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/snajfi/endless-conflict.svg?branch=development)](https://travis-ci.org/snajfi/endless-conflict)
-
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=cz.endless.conflict%3Aec&metric=coverage)](https://sonarcloud.io/dashboard?id=cz.endless.conflict%3Aec)
 <h1>Endless Conflict (EC)</h1>
 
 Welcome in repository of turn based multi-player browser game. Game is currently in development process and we are working
