@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/snajfi/endless-conflict.svg?branch=development)](https://travis-ci.org/snajfi/endless-conflict)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=cz.endless.conflict%3Aec&metric=alert_status)](https://sonarcloud.io/dashboard?id=cz.endless.conflict%3Aec)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=cz.endless.conflict%3Aec&metric=ncloc)](https://sonarcloud.io/dashboard?id=cz.endless.conflict%3Aec)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=cz.endless.conflict%3Aec&metric=coverage)](https://sonarcloud.io/dashboard?id=cz.endless.conflict%3Aec)
 <h1>Endless Conflict (EC)</h1>
 
