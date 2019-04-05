@@ -3,6 +3,7 @@ package cz.endless.conflict.services;
 import cz.endless.conflict.entities.age.Age;
 import cz.endless.conflict.entities.age.AgeConfiguration;
 
+import javax.ejb.Stateless;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,7 +15,7 @@ import java.util.List;
 /**
  * Created by dobeji1 on 15.03.2019.
  */
-@ApplicationScoped
+@Stateless
 public class AgeServiceImpl implements AgeService {
 
     @PersistenceContext(unitName = "endless_conflict")

@@ -18,7 +18,7 @@
         <from-view-id>*</from-view-id>
         <navigation-case>
             <from-outcome>main</from-outcome>
-            <to-view-id>/main.xhtml</to-view-id>
+            <to-view-id>/wiki/main.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
@@ -27,7 +27,7 @@
         <from-view-id>*</from-view-id>
         <navigation-case>
             <from-outcome>ageCreation</from-outcome>
-            <to-view-id>/ageCreation.xhtml</to-view-id>
+            <to-view-id>/administration/ageCreation.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
@@ -36,7 +36,7 @@
         <from-view-id>*</from-view-id>
         <navigation-case>
             <from-outcome>ageAdministration</from-outcome>
-            <to-view-id>/ageAdministration.xhtml</to-view-id>
+            <to-view-id>/administration/ageAdministration.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>

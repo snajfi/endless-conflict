@@ -53,7 +53,7 @@
     </session-config>
 
     <welcome-file-list>
-        <welcome-file>main.jsf</welcome-file>
+        <welcome-file>index.jsf</welcome-file>
     </welcome-file-list>
 
     <mime-mapping>

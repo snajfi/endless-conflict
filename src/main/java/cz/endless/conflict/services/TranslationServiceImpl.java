@@ -2,7 +2,7 @@ package cz.endless.conflict.services;
 
 import org.apache.logging.log4j.Logger;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.text.MessageFormat;
 import java.util.Locale;
@@ -12,7 +12,7 @@ import java.util.ResourceBundle;
 /**
  * Created by snajfi1 on 03.03.2018.
  */
-@ApplicationScoped
+@Stateless
 public class TranslationServiceImpl implements TranslationService {
 
 
