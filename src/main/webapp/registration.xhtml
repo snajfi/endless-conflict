@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:body>
+
+    <ui:composition template="/resources/templates/publicPartTemplate.xhtml">
+        <ui:define name="content">
+            <h:form>
+
+                <h:panelGrid columns="2">
+                    <h:outputText value="Nickname" />
+                    <p:inputText value="#{playerCreationBean.newPlayer.nickname}" />
+
+                    <h:outputText value="Login" />
+                    <p:inputText value="#{playerCreationBean.newPlayer.nickname}" />
+
+                    <h:outputText value="Nickname" />
+                    <p:inputText value="#{playerCreationBean.newPlayer.login}" />
+
+                    <h:outputText value="E-mail" />
+                    <p:inputText value="#{playerCreationBean.newPlayer.email}" />
+
+                    <h:outputText value="Password" />
+                    <p:inputText value="#{playerCreationBean.newPlayer.password}" type="password" />
+                </h:panelGrid>
+
+                <p:commandButton value="Registration" action="#{playerCreationBean.savePlayer}" update="@form" />
+            </h:form>
+
+        </ui:define>
+
+    </ui:composition>
+
+</h:body>
+
+</html>
