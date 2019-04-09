@@ -1,5 +1,7 @@
 package cz.endless.conflict.entities;
 
+import cz.endless.conflict.entities.age.Age;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -7,11 +9,27 @@ import java.util.Objects;
 /**
  * Created by dobeji1 on 15.03.2019.
  */
+@NamedQueries({
+        @NamedQuery(name = Player.GET_ALL_PLAYERS,
+                query = "select p from Player p "),
+        @NamedQuery(name = Player.GET_PLAYER_BY_NICKNAME,
+                query = "select p from Player p where p.nickname = :nickname"),
+        @NamedQuery(name = Player.GET_PLAYER_BY_LOGIN,
+                query = "select p from Player p where p.login = :login"),
+        @NamedQuery(name = Player.GET_PLAYER_BY_EMAIL,
+                query = "select p from Player p where p.email = :email")
+})
 @Table(name = "PLAYER")
 @Entity
 public class Player implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    public static final String GET_ALL_PLAYERS = "Player.GET_ALL_PLAYERS";
+    public static final String GET_PLAYER_BY_NICKNAME = "Player.GET_PLAYER_BY_NICKNAME";
+    public static final String GET_PLAYER_BY_LOGIN = "Player.GET_PLAYER_BY_LOGIN";
+    public static final String GET_PLAYER_BY_EMAIL = "Player.GET_PLAYER_BY_EMAIL";
+
 
     @Id
     @Column(name = "ID")

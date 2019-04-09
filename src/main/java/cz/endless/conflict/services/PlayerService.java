@@ -17,4 +17,6 @@ public interface PlayerService {
 
     Boolean isLoginAvailable(String login);
 
+    Boolean isEmailAvailable(String email);
+
 }

@@ -12,19 +12,19 @@
 
                 <h:panelGrid columns="2">
                     <h:outputText value="Nickname" />
-                    <p:inputText value="#{playerCreationBean.newPlayer.nickname}" />
+                    <p:inputText value="#{playerCreationBean.newPlayer.nickname}" required="true" requiredMessage="#{msg.errorNicknameIsRequired}"/>
 
                     <h:outputText value="Login" />
-                    <p:inputText value="#{playerCreationBean.newPlayer.nickname}" />
-
-                    <h:outputText value="Nickname" />
-                    <p:inputText value="#{playerCreationBean.newPlayer.login}" />
+                    <p:inputText value="#{playerCreationBean.newPlayer.login}" required="true" requiredMessage="#{msg.errorLoginIsRequired}" />
 
                     <h:outputText value="E-mail" />
-                    <p:inputText value="#{playerCreationBean.newPlayer.email}" />
+                    <p:inputText value="#{playerCreationBean.newPlayer.email}" required="true" requiredMessage="#{msg.errorEmailIsRequired}" />
+
+                    <h:outputText value="E-mail (repeat)" />
+                    <p:inputText value="#{playerCreationBean.emailRepeat}" required="true" requiredMessage="#{msg.errorEmailIsRequired}" />
 
                     <h:outputText value="Password" />
-                    <p:inputText value="#{playerCreationBean.newPlayer.password}" type="password" />
+                    <p:inputText value="#{playerCreationBean.newPlayer.password}" type="password" required="true" requiredMessage="#{msg.errorPasswordIsRequired}" />
                 </h:panelGrid>
 
                 <p:commandButton value="Registration" action="#{playerCreationBean.savePlayer}" update="@form" />
