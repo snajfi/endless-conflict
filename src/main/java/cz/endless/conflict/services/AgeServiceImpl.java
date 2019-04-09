@@ -4,7 +4,6 @@ import cz.endless.conflict.entities.age.Age;
 import cz.endless.conflict.entities.age.AgeConfiguration;
 
 import javax.ejb.Stateless;
-import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;

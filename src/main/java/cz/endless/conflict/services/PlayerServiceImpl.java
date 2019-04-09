@@ -3,7 +3,6 @@ package cz.endless.conflict.services;
 import cz.endless.conflict.entities.Player;
 
 import javax.ejb.Stateless;
-import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
