@@ -1,4 +1,4 @@
-package cz.endless.conflict.test.services;
+package cz.endless.conflict.test.unit.services;
 
 import cz.endless.conflict.services.TranslationServiceImpl;
 import org.junit.jupiter.api.Test;
