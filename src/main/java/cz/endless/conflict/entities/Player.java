@@ -16,6 +16,8 @@ import java.util.Objects;
                 query = "select p from Player p where p.nickname = :nickname"),
         @NamedQuery(name = Player.GET_PLAYER_BY_LOGIN,
                 query = "select p from Player p where p.login = :login"),
+        @NamedQuery(name = Player.GET_PLAYER_BY_LOGIN_AND_PASSWORD,
+                query = "select p from Player p where p.login = :login and p.password = :password"),
         @NamedQuery(name = Player.GET_PLAYER_BY_EMAIL,
                 query = "select p from Player p where p.email = :email")
 })
@@ -28,6 +30,7 @@ public class Player implements Serializable {
     public static final String GET_ALL_PLAYERS = "Player.GET_ALL_PLAYERS";
     public static final String GET_PLAYER_BY_NICKNAME = "Player.GET_PLAYER_BY_NICKNAME";
     public static final String GET_PLAYER_BY_LOGIN = "Player.GET_PLAYER_BY_LOGIN";
+    public static final String GET_PLAYER_BY_LOGIN_AND_PASSWORD = "Player.GET_PLAYER_BY_LOGIN_AND_PASSWORD";
     public static final String GET_PLAYER_BY_EMAIL = "Player.GET_PLAYER_BY_EMAIL";
 
 

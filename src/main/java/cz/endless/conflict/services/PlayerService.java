@@ -13,10 +13,14 @@ public interface PlayerService {
      */
     Player saveNewPlayer(Player player);
 
+    Player findPlayerByLogin(String login);
+
     Boolean isNicknameAvailable(String nickname);
 
     Boolean isLoginAvailable(String login);
 
     Boolean isEmailAvailable(String email);
+
+    boolean authenticatePlayer(String login, String password);
 
 }
