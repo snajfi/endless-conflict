@@ -2,6 +2,8 @@ package cz.endless.conflict.services;
 
 import cz.endless.conflict.entities.Player;
 
+import java.util.List;
+
 /**
  * Created by snajfi on 18.3.2019.
  */
@@ -14,6 +16,8 @@ public interface PlayerService {
     Player saveNewPlayer(Player player);
 
     Player findPlayerByLogin(String login);
+
+    List<Player> getAllPlayers();
 
     Boolean isNicknameAvailable(String nickname);
 

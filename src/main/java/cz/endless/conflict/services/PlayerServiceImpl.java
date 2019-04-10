@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -31,6 +32,11 @@ public class PlayerServiceImpl implements PlayerService {
             return resultList.get(0);
         }
         return null;
+    }
+
+    @Override
+    public List<Player> getAllPlayers() {
+        return entityManager.createNamedQuery(Player.GET_ALL_PLAYERS,Player.class).getResultList();
     }
 
     @Override
