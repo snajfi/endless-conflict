@@ -16,7 +16,7 @@
         <java.version>1.8</java.version>
 
         <javaEE.api.version>7.0</javaEE.api.version>
-        <primefaces.version>6.2</primefaces.version>
+        <primefaces.version>7.0</primefaces.version>
         <log4j.version>2.4.1</log4j.version>
 
         <!-- Tests -->
@@ -34,6 +34,7 @@
     </repositories>
 
     <dependencies>
+
 
         <!-- J2EE api-->
         <dependency>
