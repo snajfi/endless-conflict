@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -38,8 +39,6 @@ class ITPlayerServiceImpl {
 
     private static Player testingPlayer;
 
-
-
     @BeforeAll
     static void init() throws NoSuchFieldException, IllegalAccessException {
 
@@ -61,7 +60,6 @@ class ITPlayerServiceImpl {
         field.setAccessible(true);
         field.set(playerService,entityManager );
 
-
         // Player for testing
         testingPlayer = new Player();
         testingPlayer.setLogin("loginName");
@@ -79,7 +77,7 @@ class ITPlayerServiceImpl {
 
     @Test
     @Order(2)
-    void insertingPlayer() {
+    void saveNewPlayerTest() {
         // save player
         Player player = playerService.saveNewPlayer(testingPlayer);
         assertTrue(player.getId()!=null);
@@ -87,14 +85,56 @@ class ITPlayerServiceImpl {
 
     @Test
     @Order(3)
-    void searchForPlayer() {
+    void findPlayerByLoginTest() {
         assertNotNull(playerService.findPlayerByLogin(testingPlayer.getLogin()));
     }
 
     @Test
     @Order(4)
+    void findPlayerByLoginTest2() {
+        assertNull(playerService.findPlayerByLogin("-nonsence-login-name"));
+    }
+
+    @Test
+    @Order(5)
     void isEmailAvailableTest2() {
         assertFalse(playerService.isEmailAvailable(testingPlayer.getEmail()));
+    }
+
+    @Test
+    @Order(6)
+    void getAllPlayersTest() {
+        assertTrue(playerService.getAllPlayers().size()==1);
+    }
+
+    @Test
+    @Order(7)
+    void authenticatePlayerTest1() {
+        assertTrue(playerService.authenticatePlayer(testingPlayer.getLogin(),testingPlayer.getPassword()));
+    }
+
+    @Test
+    @Order(8)
+    void authenticatePlayerTest2() {
+        assertFalse(playerService.authenticatePlayer("non-existing-login","some-non-existing-password"));
+    }
+
+    @Test
+    @Order(9)
+    void isLoginAvailableTest() {
+        assertTrue(playerService.isLoginAvailable("non-existing-login"));
+    }
+
+    @Test
+    @Order(10)
+    void isLoginAvailableTest2() {
+        assertFalse(playerService.isLoginAvailable(testingPlayer.getLogin()));
+    }
+
+    @Test
+    @Order(10)
+    void isNicknameAvailableTest() {
+        assertFalse(playerService.isNicknameAvailable(testingPlayer.getNickname()));
     }
 
     @BeforeEach
