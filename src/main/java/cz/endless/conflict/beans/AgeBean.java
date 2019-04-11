@@ -43,7 +43,9 @@ public class AgeBean implements Serializable {
         ageConfigurations = ageService.getAllAgesConfigurations();
         newAge = new Age();
         newAge.setNumber(ageService.getNextAgeNumber());
-        newAge.setWinConditions(new WinConditions());
+        WinConditions winConditions = new WinConditions();
+        winConditions.setWinCondition(new ArrayList<>());
+        newAge.setWinConditions(winConditions);
         ageConfiguration = new AgeConfiguration();
         nullAgeConfiguration = new AgeConfiguration();
     }

@@ -10,10 +10,28 @@
 
 
         <ui:define name="topMenu">
-            <ui:include src="/WEB-INF/includes/login.xhtml"/>
         </ui:define>
         <ui:define name="content">
+            <h:form>
+                <p:dataGrid var="age" value="#{ageBean.ages}" columns="3"
+                            layout="grid" rows="12" id="ages">
 
+                    <f:facet name="header">
+                        Current ages
+                    </f:facet>
+
+                    <p:panel header="#{age.number}" style="text-align:center">
+
+                        <h:outputText value="#{age.description}"/><br />
+                        <h:outputText value="Started at: "/>
+                        <h:outputText value="#{age.startedAt}">
+                            <f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+                        </h:outputText><br />
+
+                    </p:panel>
+
+                </p:dataGrid>
+            </h:form>
         </ui:define>
 
     </ui:composition>

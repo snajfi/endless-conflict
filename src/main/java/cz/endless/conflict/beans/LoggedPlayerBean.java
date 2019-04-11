@@ -3,7 +3,7 @@ package cz.endless.conflict.beans;
 
 import cz.endless.conflict.entities.Player;
 
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import java.io.Serializable;
 
@@ -23,5 +23,10 @@ public class LoggedPlayerBean implements Serializable {
 
     public void setLoggedPlayer(Player loggedPlayer) {
         this.loggedPlayer = loggedPlayer;
+    }
+
+    public String lougout() {
+        setLoggedPlayer(null);
+        return "public_main";
     }
 }

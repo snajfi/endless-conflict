@@ -29,13 +29,13 @@ public class LoginBean implements Serializable {
 
     public String authenticatePlayer() {
         if (login == null || password == null || !playerService.authenticatePlayer(login, password)) {
-            utilsService.addLocalizedMessage("errorLoginWrongCombination", FacesMessage.SEVERITY_ERROR);
+            utilsService.addLocalizedMessage("errorLoginWrongCombination", "loginMessages", FacesMessage.SEVERITY_ERROR);
             return "";
         } else {
             Player player = playerService.findPlayerByLogin(login);
 
             loggedPlayerBean.setLoggedPlayer(player);
-            utilsService.addLocalizedMessage("successfullyLogged", FacesMessage.SEVERITY_INFO, player.getLogin());
+            utilsService.addLocalizedMessage("successfullyLogged", "loginMessages", FacesMessage.SEVERITY_INFO, player.getLogin());
             return "";
         }
     }

@@ -60,7 +60,7 @@ public class PlayerCreationBean implements Serializable {
             // check mandatory fields + check email format
 
             // login new player
-            loggedPlayerBean.setLoggedPlayer(playerService.saveNewPlayer(newPlayer));
+            playerService.saveNewPlayer(newPlayer);
             utilsService.addLocalizedMessage("userSuccessfullyRegistered", FacesMessage.SEVERITY_INFO);
         }
 

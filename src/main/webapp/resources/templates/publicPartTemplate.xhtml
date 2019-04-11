@@ -14,17 +14,14 @@
 
     <div class="wrap">
 
-        <div class="topMenu">
+        <ui:include src="/WEB-INF/includes/login.xhtml"/>
+        <div class="topMenu" style="clear: both;">
             <ui:insert name="topMenu">
 
                 menu
 
             </ui:insert>
         </div>
-
-        <p:messages id="messages">
-            <p:autoUpdate />
-        </p:messages>
 
         <div class="content">
             <ui:insert name="content">

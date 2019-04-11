@@ -20,6 +20,11 @@ public class UtilsServiceImpl implements UtilsService {
         addMessage(message,severity);
     }
 
+    public void addLocalizedMessage(String key, String componentId, FacesMessage.Severity severity, String... params) {
+        String message = translationService.getTranslationForKey(key,params);
+        addMessage(message,componentId,severity);
+    }
+
     private void addMessage(String message, FacesMessage.Severity severity) {
         if (message!=null && !message.isEmpty()) {
             if(severity==null) {
@@ -28,6 +33,17 @@ public class UtilsServiceImpl implements UtilsService {
             FacesMessage facesMessage = new FacesMessage(message);
             facesMessage.setSeverity(severity);
             facesContext.addMessage(null, facesMessage);
+        }
+    }
+
+    private void addMessage(String message, String componentId, FacesMessage.Severity severity) {
+        if (message!=null && !message.isEmpty()) {
+            if(severity==null) {
+                severity = FacesMessage.SEVERITY_INFO;
+            }
+            FacesMessage facesMessage = new FacesMessage(message);
+            facesMessage.setSeverity(severity);
+            facesContext.addMessage(componentId, facesMessage);
         }
     }
 }

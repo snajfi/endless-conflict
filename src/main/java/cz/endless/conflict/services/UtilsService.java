@@ -9,4 +9,6 @@ public interface UtilsService {
 
     void addLocalizedMessage(String key, FacesMessage.Severity severity, String... params);
 
+    void addLocalizedMessage(String key, String componentId, FacesMessage.Severity severity, String... params);
+
 }
