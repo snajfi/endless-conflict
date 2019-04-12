@@ -33,9 +33,7 @@ public class LoginBean implements Serializable {
             return "";
         } else {
             Player player = playerService.findPlayerByLogin(login);
-
             loggedPlayerBean.setLoggedPlayer(player);
-            utilsService.addLocalizedMessage("successfullyLogged", "loginMessages", FacesMessage.SEVERITY_INFO, player.getLogin());
             return "";
         }
     }

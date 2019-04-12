@@ -28,6 +28,9 @@
             <h:outputText value="Started at" required="true" />
             <p:calendar value="#{ageBean.newAge.startedAt}" pattern="dd.MM.yyyy HH:mm" widgetVar="startedAtCalendar" mindate="#{ageBean.today()}"/>
 
+            <h:outputText value="Ended at" required="true" />
+            <p:calendar value="#{ageBean.newAge.endedAt}" pattern="dd.MM.yyyy HH:mm" widgetVar="endedAtCalendar" mindate="#{ageBean.today()}"/>
+
             <h:outputText value="Configuration" />
             <p:selectOneMenu value="#{ageBean.ageConfiguration}" converter="#{ageConfigurationConverter}">
                 <f:selectItem itemLabel="New configuration" itemValue="#{ageBean.nullAgeConfiguration}" />

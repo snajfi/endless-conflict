@@ -3,8 +3,12 @@ package cz.endless.conflict.services;
 import cz.endless.conflict.entities.Player;
 import cz.endless.conflict.entities.age.Age;
 import cz.endless.conflict.entities.age.AgeConfiguration;
+import cz.endless.conflict.entities.age.WinCondition;
+import cz.endless.conflict.entities.age.WinConditions;
+import cz.endless.conflict.enums.WinConditionType;
 
 import javax.inject.Inject;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -57,6 +61,18 @@ public class ImportServiceImpl implements ImportService {
         age1.setStartedAt(new Date());
         ageService.createNewAge(age1);
 
+        WinConditions winConditions = new WinConditions();
+        WinCondition winConditionSoldier = new WinCondition();
+        winConditionSoldier.setValue(1000000);
+        winConditionSoldier.setWinConditionType(WinConditionType.AMOUNT_OF_SOLDIERS);
+
+        WinCondition winConditionPress = new WinCondition();
+        winConditionPress.setValue(12000000);
+        winConditionPress.setWinConditionType(WinConditionType.PRESTIGE);
+
+        winConditions.setAllRequired(true);
+        winConditions.setWinCondition(Arrays.asList(winConditionSoldier, winConditionPress));
+
         Age age2 = new Age();
         age2.setNumber(2);
         cal = Calendar.getInstance();
@@ -66,6 +82,7 @@ public class ImportServiceImpl implements ImportService {
         age2.setDescription("Age 2");
         age2.setAgeConfiguration(ageConfiguration);
         age2.setStartedAt(new Date());
+        age2.setWinConditions(winConditions);
         ageService.createNewAge(age2);
     }
 
