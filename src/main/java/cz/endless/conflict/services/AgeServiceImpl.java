@@ -62,12 +62,6 @@ public class AgeServiceImpl implements AgeService {
     @Override
     public int getNextAgeNumber() {
         TypedQuery<Integer> query = entityManager.createNamedQuery(Age.GET_LAST_AGE_NUMBER,Integer.class);
-        List<Integer> resultList = query.getResultList();
-        if (!resultList.isEmpty()) {
-            return resultList.get(0) + 1;
-        }
-        else {
-            return 1;
-        }
+        return query.getSingleResult() + 1;
     }
 }

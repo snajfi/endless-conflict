@@ -42,24 +42,21 @@ public class PlayerServiceImpl implements PlayerService {
     public Boolean isNicknameAvailable(String nickname) {
         TypedQuery<Player> query = entityManager.createNamedQuery(Player.GET_PLAYER_BY_NICKNAME,Player.class);
         query.setParameter("nickname", nickname);
-        List<Player> resultList = query.getResultList();
-        return resultList.isEmpty();
+        return query.getResultList().isEmpty();
     }
 
     @Override
     public Boolean isLoginAvailable(String login) {
         TypedQuery<Player> query = entityManager.createNamedQuery(Player.GET_PLAYER_BY_LOGIN,Player.class);
         query.setParameter("login", login);
-        List<Player> resultList = query.getResultList();
-        return resultList.isEmpty();
+        return query.getResultList().isEmpty();
     }
 
     @Override
     public Boolean isEmailAvailable(String email) {
         TypedQuery<Player> query = entityManager.createNamedQuery(Player.GET_PLAYER_BY_EMAIL,Player.class);
         query.setParameter("email", email);
-        List<Player> resultList = query.getResultList();
-        return resultList.isEmpty();
+        return query.getResultList().isEmpty();
     }
 
     @Override
@@ -67,7 +64,6 @@ public class PlayerServiceImpl implements PlayerService {
         TypedQuery<Player> query = entityManager.createNamedQuery(Player.GET_PLAYER_BY_LOGIN_AND_PASSWORD, Player.class);
         query.setParameter("login",login);
         query.setParameter("password",password);
-        List<Player> players = query.getResultList();
-        return !players.isEmpty();
+        return !query.getResultList().isEmpty();
     }
 }
