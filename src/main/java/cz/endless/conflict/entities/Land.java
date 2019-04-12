@@ -3,6 +3,7 @@ package cz.endless.conflict.entities;
 import cz.endless.conflict.entities.age.Age;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -11,7 +12,11 @@ import java.util.Objects;
  */
 @NamedQueries({
         @NamedQuery(name = Land.GET_LAND_BY_NAME_AND_AGE,
-                query = "select l from Land l where l.name = :name and l.age = :age")
+                query = "select l from Land l where l.name = :name and l.age = :age"),
+        @NamedQuery(name = Land.GET_LAND_BY_PLAYER_AND_AGE,
+                query = "select l from Land l where l.player = :player and l.age = :age"),
+        @NamedQuery(name = Land.GET_LAST_LAND_IN_AGE_ID,
+                query = "select max(l.landInAgeId) from Land l where l.age = :age"),
 })
 @Table(name = "LAND")
 @Entity
@@ -20,6 +25,8 @@ public class Land implements Serializable {
     private static final long serialVersionUID = 1L;
 
     public static final String GET_LAND_BY_NAME_AND_AGE = "Land.GET_LAND_BY_NAME_AND_AGE";
+    public static final String GET_LAND_BY_PLAYER_AND_AGE = "Land.GET_LAND_BY_PLAYER_AND_AGE";
+    public static final String GET_LAST_LAND_IN_AGE_ID = "Land.GET_LAST_LAND_IN_AGE_ID";
 
     @Id
     @Column(name = "ID")
@@ -28,6 +35,9 @@ public class Land implements Serializable {
 
     @Column(name = "NAME")
     private String name;
+
+    @Column(name = "LAND_IN_AGE_ID")
+    private Integer landInAgeId;
 
     @ManyToOne
     @JoinColumn(name = "PLAYER_ID")
@@ -65,6 +75,14 @@ public class Land implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getLandInAgeId() {
+        return landInAgeId;
+    }
+
+    public void setLandInAgeId(Integer landInAgeId) {
+        this.landInAgeId = landInAgeId;
     }
 
     public Player getPlayer() {

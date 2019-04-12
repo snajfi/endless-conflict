@@ -4,6 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
@@ -15,14 +16,28 @@
 
     <div class="wrap">
 
+        <p:toolbar>
+            <f:facet name="left">
+                <h:outputText value="#{loggedPlayerBean.playedLand.age.description}" /><br />
+                <h:outputText value="Land: #{loggedPlayerBean.playedLand.name} (##{loggedPlayerBean.playedLand.landInAgeId})" />
+            </f:facet>
+            <f:facet name="right">
+                <ui:include src="/WEB-INF/includes/login.xhtml"/>
+            </f:facet>
+        </p:toolbar>
         <div class="topMenu">
             <ui:insert name="topMenu">
 
-                menu
-
+                <h:form>
+                    <p:tabMenu activeIndex="#{param.i}">
+                        <p:menuitem value="Main" outcome="game_main" icon="pi pi-star">
+                            <f:param name="i" value="0" />
+                        </p:menuitem>
+                    </p:tabMenu>
+                </h:form>
             </ui:insert>
         </div>
-
+        <br />
         <div class="content">
             <ui:insert name="content">
                 content

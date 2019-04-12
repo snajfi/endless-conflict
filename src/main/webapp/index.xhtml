@@ -55,8 +55,8 @@
                             </p:tab>
                         </p:accordionPanel>
                         <br />
-                        <p:linkButton value="Enter age" rendered="#{ageBean.haveLoggedPlayerLandInAge(age)}"
-                                      outcome="game_main" />
+                        <p:commandButton value="Enter age" rendered="#{ageBean.haveLoggedPlayerLandInAge(age)}"
+                                         action="#{landBean.enterAge(age)}" />
 
                         <p:commandButton value="Create land" process="landName" ajax="true"
                                          rendered="#{loggedPlayerBean.playerLogged and !ageBean.haveLoggedPlayerLandInAge(age)}"

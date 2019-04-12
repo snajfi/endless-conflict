@@ -37,7 +37,9 @@ public class LandBean implements Serializable {
             land.setName(newLandName);
             land.setPlayer(loggedPlayerBean.getLoggedPlayer());
             land.setAge(age);
+            land.setLandInAgeId(landService.getNextAgeNumber(age));
             landService.createLand(land);
+            loggedPlayerBean.setPlayedLand(landService.findLandByPlayerAndAge(loggedPlayerBean.getLoggedPlayer(), age));
             return "game_main";
         } else {
             utilsService.addLocalizedMessage("errorNameOfLandNotAvailable","createLandMessage" + age.getId().toString(), FacesMessage.SEVERITY_ERROR);
@@ -45,8 +47,9 @@ public class LandBean implements Serializable {
         }
     }
 
-    public String getMessageId(Age age) {
-        return "createLandMessage" + age.getId().toString();
+    public String enterAge(Age age) {
+        loggedPlayerBean.setPlayedLand(landService.findLandByPlayerAndAge(loggedPlayerBean.getLoggedPlayer(), age));
+        return "game_main";
     }
 
     public String getNewLandName() {
