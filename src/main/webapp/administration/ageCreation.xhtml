@@ -2,103 +2,106 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://java.sun.com/jstl/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
-<h:head>
-    <title>Age creation</title>
-</h:head>
 <h:body>
-    <p:importEnum type="cz.endless.conflict.enums.WinConditionType" var="winConditionTypes" allSuffix="ALL" />
 
-    <h:form>
-        <p:messages id="messages">
-            <p:autoUpdate />
-        </p:messages>
+    <ui:composition template="/resources/templates/administrationTemplate.xhtml">
 
-        <p:panelGrid columns="2" style="width: 500px">
-            <f:facet name="header">
-                Age settings
-            </f:facet>
-            <h:outputText value="Number" required="true" />
-            <p:inputText value="#{ageBean.newAge.number}" />
+        <ui:define name="topMenu">
+        </ui:define>
+        <ui:define name="content">
+            <h:form>
+                <p:messages id="messages">
+                    <p:autoUpdate />
+                </p:messages>
 
-            <h:outputText value="Description" />
-            <p:inputText value="#{ageBean.newAge.description}" />
+                <p:panelGrid columns="2" style="width: 500px">
+                    <f:facet name="header">
+                        Age settings
+                    </f:facet>
+                    <h:outputText value="Number" required="true" />
+                    <p:inputText value="#{ageBean.newAge.number}" />
 
-            <h:outputText value="Started at" required="true" />
-            <p:calendar value="#{ageBean.newAge.startedAt}" pattern="dd.MM.yyyy HH:mm" widgetVar="startedAtCalendar" mindate="#{ageBean.today()}"/>
+                    <h:outputText value="Description" />
+                    <p:inputText value="#{ageBean.newAge.description}" />
 
-            <h:outputText value="Ended at" required="true" />
-            <p:calendar value="#{ageBean.newAge.endedAt}" pattern="dd.MM.yyyy HH:mm" widgetVar="endedAtCalendar" mindate="#{ageBean.today()}"/>
+                    <h:outputText value="Started at" required="true" />
+                    <p:calendar value="#{ageBean.newAge.startedAt}" pattern="dd.MM.yyyy HH:mm" widgetVar="startedAtCalendar" mindate="#{ageBean.today()}"/>
 
-            <h:outputText value="Configuration" />
-            <p:selectOneMenu value="#{ageBean.ageConfiguration}" converter="#{ageConfigurationConverter}">
-                <f:selectItem itemLabel="New configuration" itemValue="#{ageBean.nullAgeConfiguration}" />
-                <f:selectItems value="#{ageBean.ageConfigurations}" var="ageConfiguration" itemLabel="#{ageConfiguration.name}" itemValue="#{ageConfiguration}"/>
-                <p:ajax update="confName confStackSize confLocked" listener="#{ageBean.configurationChange}" event="change"/>
-            </p:selectOneMenu>
+                    <h:outputText value="Ended at" required="true" />
+                    <p:calendar value="#{ageBean.newAge.endedAt}" pattern="dd.MM.yyyy HH:mm" widgetVar="endedAtCalendar" mindate="#{ageBean.today()}"/>
 
-            <h:outputText value="Configuration name" />
-            <p:inputText id="confName" value="#{ageBean.ageConfiguration.name}" required="true"
-                         disabled="#{ageBean.ageConfiguration.id ne null}"/>
-            <h:outputText value="Stack size" />
-            <p:inputText id="confStackSize" value="#{ageBean.ageConfiguration.roundStack}" required="true"
-                         disabled="#{ageBean.ageConfiguration.id ne null}" />
-            <h:outputText value="Locked stack size" />
-            <p:inputText id="confLocked" value="#{ageBean.ageConfiguration.lockedStack}" required="true"
-                         disabled="#{ageBean.ageConfiguration.id ne null}"/>
-        </p:panelGrid>
+                    <h:outputText value="Configuration" />
+                    <p:selectOneMenu value="#{ageBean.ageConfiguration}" converter="#{ageConfigurationConverter}">
+                        <f:selectItem itemLabel="New configuration" itemValue="#{ageBean.nullAgeConfiguration}" />
+                        <f:selectItems value="#{ageBean.ageConfigurations}" var="ageConfiguration" itemLabel="#{ageConfiguration.name}" itemValue="#{ageConfiguration}"/>
+                        <p:ajax update="confName confStackSize confLocked" listener="#{ageBean.configurationChange}" event="change"/>
+                    </p:selectOneMenu>
+
+                    <h:outputText value="Configuration name" />
+                    <p:inputText id="confName" value="#{ageBean.ageConfiguration.name}" required="true"
+                                 disabled="#{ageBean.ageConfiguration.id ne null}"/>
+                    <h:outputText value="Stack size" />
+                    <p:inputText id="confStackSize" value="#{ageBean.ageConfiguration.roundStack}" required="true"
+                                 disabled="#{ageBean.ageConfiguration.id ne null}" />
+                    <h:outputText value="Locked stack size" />
+                    <p:inputText id="confLocked" value="#{ageBean.ageConfiguration.lockedStack}" required="true"
+                                 disabled="#{ageBean.ageConfiguration.id ne null}"/>
+                </p:panelGrid>
 
 
-        <p:panelGrid columns="1" style="width: 500px; border: none;">
-            <f:facet name="header">
-                    <h:outputText value="Win conditions" />
-                    <p:commandLink immediate="true" styleClass="fa fa-plus" process="@this" oncomplete="PF('winConditionTable').addRow();"
-                                   action="#{ageBean.addNewWinCondition}" style="float: right; text-decoration: none;">
-                    </p:commandLink>
-            </f:facet>
-            <p:panelGrid columns="2" style="border: none;">
-                <h:outputText value="Required? " />
-                <p:selectBooleanCheckbox value="#{ageBean.newAge.winConditions.allRequired}" />
-            </p:panelGrid>
-            <p:dataTable value="#{ageBean.newAge.winConditions.winCondition}" emptyMessage="" editMode="cell"
-                         id="winConditionTable" rowIndexVar="rowId"
-                         var="winCondition" editable="true" widgetVar="winConditionTable">
-                <p:column headerText="Condition type">
+                <p:panelGrid columns="1" style="width: 500px; border: none;">
+                    <f:facet name="header">
+                            <h:outputText value="Win conditions" />
+                            <p:commandLink immediate="true" styleClass="fa fa-plus" process="@this" oncomplete="PF('winConditionTable').addRow();"
+                                           action="#{ageBean.addNewWinCondition}" style="float: right; text-decoration: none;">
+                            </p:commandLink>
+                    </f:facet>
+                    <p:panelGrid columns="2" style="border: none;">
+                        <h:outputText value="Required? " />
+                        <p:selectBooleanCheckbox value="#{ageBean.newAge.winConditions.allRequired}" />
+                    </p:panelGrid>
+                    <p:dataTable value="#{ageBean.newAge.winConditions.winCondition}" emptyMessage="" editMode="cell"
+                                 id="winConditionTable" rowIndexVar="rowId"
+                                 var="winCondition" editable="true" widgetVar="winConditionTable">
+                        <p:column headerText="Condition type">
 
-                    <p:cellEditor>
-                        <f:facet name="output">
-                            <h:outputText value="#{winCondition.winConditionType.key}" />
-                            <h:outputText rendered="#{winCondition.winConditionType.key eq null}" value="Select" />
-                        </f:facet>
-                        <f:facet name="input">
-                            <p:selectOneMenu value="#{winCondition.winConditionType}" style="width: 170px;" required="true" requiredMessage="Condition type is required">
-                                <f:selectItems value="#{winConditionTypes.ALL}" var="winConditionType" itemLabel="#{winConditionType.key}" itemValue="#{winConditionType}"/>
-                            </p:selectOneMenu>
-                        </f:facet>
-                    </p:cellEditor>
-                </p:column>
-                <p:column headerText="Value">
-                    <p:cellEditor>
-                        <f:facet name="output">
-                            <h:outputText value="#{winCondition.value}" />
-                        </f:facet>
-                        <f:facet name="input">
-                            <p:inputText value="#{winCondition.value}" />
-                        </f:facet>
-                    </p:cellEditor>
-                </p:column>
-                <p:column width="40">
-                    <p:commandButton ajax="true" icon="fa fa-trash" width="20"
-                                     process="@this" action="#{ageBean.deleteCondition(rowId)}"
-                                     update="winConditionTable"/>
-                </p:column>
-            </p:dataTable>
-        </p:panelGrid>
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{winCondition.winConditionType.key}" />
+                                    <h:outputText rendered="#{winCondition.winConditionType.key eq null}" value="Select" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:selectOneMenu value="#{winCondition.winConditionType}" style="width: 170px;" required="true" requiredMessage="Condition type is required">
+                                        <f:selectItems value="#{winConditionTypes.ALL}" var="winConditionType" itemLabel="#{winConditionType.key}" itemValue="#{winConditionType}"/>
+                                    </p:selectOneMenu>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column headerText="Value">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{winCondition.value}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{winCondition.value}" />
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column width="40">
+                            <p:commandButton ajax="true" icon="fa fa-trash" width="20"
+                                             process="@this" action="#{ageBean.deleteCondition(rowId)}"
+                                             update="winConditionTable"/>
+                        </p:column>
+                    </p:dataTable>
+                </p:panelGrid>
 
-        <p:commandButton value="Save" action="#{ageBean.saveNewAge}" update="messages" />
-    </h:form>
-
+                <p:commandButton value="Save" action="#{ageBean.saveNewAge}" update="messages" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
 </h:body>
 
 </html>

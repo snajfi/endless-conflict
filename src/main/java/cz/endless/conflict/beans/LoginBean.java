@@ -34,6 +34,9 @@ public class LoginBean implements Serializable {
         } else {
             Player player = playerService.findPlayerByLogin(login);
             loggedPlayerBean.setLoggedPlayer(player);
+            if (player.isAdministrator()) {
+                return "administration_main";
+            }
             return "";
         }
     }

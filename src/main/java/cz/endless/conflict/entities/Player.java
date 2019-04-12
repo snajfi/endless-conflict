@@ -50,6 +50,9 @@ public class Player implements Serializable {
     @Column(name = "EMAIL", nullable = false, unique = true)
     private String email;
 
+    @Column
+    private boolean administrator;
+
     @OneToMany(mappedBy = "player", cascade = CascadeType.ALL)
     private List<Land> lands;
 
@@ -106,6 +109,14 @@ public class Player implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public boolean isAdministrator() {
+        return administrator;
+    }
+
+    public void setAdministrator(boolean administrator) {
+        this.administrator = administrator;
     }
 
     public List<Land> getLands() {

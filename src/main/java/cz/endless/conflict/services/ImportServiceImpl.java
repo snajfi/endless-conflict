@@ -34,6 +34,7 @@ public class ImportServiceImpl implements ImportService {
         player1.setLogin("Player1");
         player1.setNickname("Player1");
         player1.setPassword("123456");
+        player1.setAdministrator(false);
         playerService.saveNewPlayer(player1);
 
         Player player2 = new Player();
@@ -41,7 +42,16 @@ public class ImportServiceImpl implements ImportService {
         player2.setLogin("Player2");
         player2.setNickname("Player2");
         player2.setPassword("123456");
+        player1.setAdministrator(false);
         playerService.saveNewPlayer(player2);
+
+        Player admin = new Player();
+        admin.setEmail("admin@email.com");
+        admin.setLogin("Admin");
+        admin.setNickname("Admin");
+        admin.setPassword("123456");
+        admin.setAdministrator(true);
+        playerService.saveNewPlayer(admin);
     }
 
     private void importAges() {

@@ -4,6 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
@@ -15,17 +16,28 @@
 
     <div class="wrap">
 
+        <ui:include src="/WEB-INF/includes/login.xhtml"/>
         <div class="topMenu">
             <ui:insert name="topMenu">
 
-                menu
-
+                <h:form>
+                    <p:tabMenu activeIndex="#{param.i}">
+                        <p:menuitem value="Administration" outcome="administration_main" icon="pi pi-star">
+                            <f:param name="i" value="0" />
+                        </p:menuitem>
+                        <p:menuitem value="Ages" outcome="administration_ageAdministration" icon="pi pi-star">
+                            <f:param name="i" value="1" />
+                        </p:menuitem>
+                        <p:menuitem value="Players" icon="pi pi-star">
+                            <f:param name="i" value="2" />
+                        </p:menuitem>
+                    </p:tabMenu>
+                </h:form>
             </ui:insert>
         </div>
-
+        <br />
         <div class="content">
             <ui:insert name="content">
-                content
             </ui:insert>
         </div>
 

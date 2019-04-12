@@ -29,7 +29,7 @@ public class PlayerCreationBean implements Serializable {
 
     public void savePlayer() {
         Boolean checkOfUniqueFields = true;
-
+        newPlayer.setAdministrator(false);
         if (!playerService.isLoginAvailable(newPlayer.getLogin())) {
             checkOfUniqueFields = false;
             utilsService.addLocalizedMessage("errorLoginIsNotAvailable", FacesMessage.SEVERITY_ERROR);

@@ -1,3 +1,37 @@
-.bold {
-    font-weight: bold;
+body {
+    background-color: #3f3f3f;
+    color: #dedede;
+}
+
+.content{
+    width: 80%;
+    margin: 0 auto;
+}
+
+body {
+    background-color: #3f3f3f;
+    color: #dedede;
+}
+
+.content{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.topMenu {
+    clear: both;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.loginMessages {
+    margin: 0 !important;
+}
+
+.ui-messages-error {
+    padding: 7px !important;
+}
+
+#loginForm {
+    float: right;
 }
