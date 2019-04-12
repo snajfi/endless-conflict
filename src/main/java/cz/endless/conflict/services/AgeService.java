@@ -17,8 +17,6 @@ public interface AgeService {
 
     List<Age> getAllAges();
 
-    AgeConfiguration createNewAgeConfiguration(AgeConfiguration ageConfiguration);
-
     AgeConfiguration getAgeConfigurationById(Long id);
 
     List<AgeConfiguration> getAllAgesConfigurations();

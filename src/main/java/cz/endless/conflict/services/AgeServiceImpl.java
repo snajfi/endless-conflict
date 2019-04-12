@@ -7,7 +7,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
 
@@ -21,7 +20,6 @@ public class AgeServiceImpl implements AgeService {
     private EntityManager entityManager;
 
     @Override
-    @Transactional
     public Age createNewAge(Age age) {
         age.setCreationDate(new Date());
         return entityManager.merge(age);
@@ -42,12 +40,6 @@ public class AgeServiceImpl implements AgeService {
     @Override
     public List<Age> getAllAges() {
         return entityManager.createNamedQuery(Age.GET_ALL_AGES,Age.class).getResultList();
-    }
-
-    @Override
-    @Transactional
-    public AgeConfiguration createNewAgeConfiguration(AgeConfiguration ageConfiguration) {
-        return entityManager.merge(ageConfiguration);
     }
 
     @Override

@@ -20,11 +20,15 @@
                         Current ages
                     </f:facet>
 
-                    <p:panel header="#{age.number}" style="text-align:center">
+                    <p:panel header="#{age.description}" style="text-align:center">
 
-                        <h:outputText value="#{age.description}"/><br />
+                        <h:outputText value="Age number: #{age.number}"/><br />
                         <h:outputText value="Started at: "/>
                         <h:outputText value="#{age.startedAt}">
+                            <f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+                        </h:outputText><br />
+                        <h:outputText value="Ended at: "/>
+                        <h:outputText value="#{age.endedAt}">
                             <f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
                         </h:outputText><br />
 

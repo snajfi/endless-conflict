@@ -31,6 +31,7 @@ public class AgeBean implements Serializable {
 
     @Inject private AgeService ageService;
     @Inject private UtilsService utilsService;
+    @Inject private ImportBean importBean;
     private List<Age> ages;
     private List<AgeConfiguration> ageConfigurations;
     private Age newAge;
@@ -39,6 +40,9 @@ public class AgeBean implements Serializable {
 
     @PostConstruct
     public void init() {
+        if (!importBean.isDefaultDataImported()) {
+            importBean.importData();
+        }
         ages = ageService.getAllAges();
         ageConfigurations = ageService.getAllAgesConfigurations();
         newAge = new Age();
