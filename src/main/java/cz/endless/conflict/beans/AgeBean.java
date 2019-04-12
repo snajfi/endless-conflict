@@ -1,5 +1,7 @@
 package cz.endless.conflict.beans;
 
+import cz.endless.conflict.entities.Land;
+import cz.endless.conflict.entities.Player;
 import cz.endless.conflict.entities.age.Age;
 import cz.endless.conflict.entities.age.AgeConfiguration;
 import cz.endless.conflict.entities.age.WinCondition;
@@ -31,6 +33,7 @@ public class AgeBean implements Serializable {
 
     @Inject private AgeService ageService;
     @Inject private UtilsService utilsService;
+    @Inject private LoggedPlayerBean loggedPlayerBean;
     @Inject private ImportBean importBean;
     private List<Age> ages;
     private List<AgeConfiguration> ageConfigurations;
@@ -91,6 +94,19 @@ public class AgeBean implements Serializable {
         if (ageConfiguration.getId() == null) {
             this.ageConfiguration = nullAgeConfiguration;
         }
+    }
+
+    public boolean haveLoggedPlayerLandInAge(Age age) {
+        Player loggedPlayer = loggedPlayerBean.getLoggedPlayer();
+        if (loggedPlayer == null) {
+            return false;
+        }
+        for (Land land : loggedPlayer.getLands()) {
+            if (land.getAge().equals(age)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public Date today() {

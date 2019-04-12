@@ -1,10 +1,12 @@
 package cz.endless.conflict.entities.age;
 
+import cz.endless.conflict.entities.Land;
 import cz.endless.conflict.entities.Player;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -60,6 +62,8 @@ public class Age implements Serializable {
     @JoinColumn(name = "WIN_CONDITIONS_ID")
     private WinConditions winConditions;
 
+    @OneToMany(mappedBy = "age", cascade = CascadeType.ALL)
+    private List<Land> lands;
 
     @Override
     public boolean equals(Object o) {
@@ -144,5 +148,13 @@ public class Age implements Serializable {
 
     public void setWinConditions(WinConditions winConditions) {
         this.winConditions = winConditions;
+    }
+
+    public List<Land> getLands() {
+        return lands;
+    }
+
+    public void setLands(List<Land> lands) {
+        this.lands = lands;
     }
 }

@@ -17,6 +17,10 @@ public class LoggedPlayerBean implements Serializable {
 
     private Player loggedPlayer = null;
 
+    public boolean isPlayerLogged() {
+        return loggedPlayer != null;
+    }
+
     public Player getLoggedPlayer() {
         return loggedPlayer;
     }

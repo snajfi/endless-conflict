@@ -1,9 +1,8 @@
 package cz.endless.conflict.entities;
 
-import cz.endless.conflict.entities.age.Age;
-
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -50,6 +49,9 @@ public class Player implements Serializable {
 
     @Column(name = "EMAIL", nullable = false, unique = true)
     private String email;
+
+    @OneToMany(mappedBy = "player", cascade = CascadeType.ALL)
+    private List<Land> lands;
 
 
     @Override
@@ -104,5 +106,13 @@ public class Player implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Land> getLands() {
+        return lands;
+    }
+
+    public void setLands(List<Land> lands) {
+        this.lands = lands;
     }
 }

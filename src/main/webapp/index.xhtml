@@ -54,6 +54,17 @@
                         </p:accordionPanel>
                     </p:panel>
 
+                    <p:linkButton value="Enter age" rendered="#{ageBean.haveLoggedPlayerLandInAge(age)}"
+                                  outcome="game_main" />
+                    <p:commandButton value="Create land" action="#{ageBean.createLand(age)}"
+                                     rendered="#{loggedPlayerBean.playerLogged and !ageBean.haveLoggedPlayerLandInAge(age)}"
+                                     id="createLandButton" />
+                    <p:overlayPanel for="createLandButton" dynamic="true" showCloseIcon="true">
+                        <h:outputText value="Name" />
+                        <p:inputText value="#{landBean.newLandName}" />
+                        <p:commandButton  value="Create land" action="#{landBean.createLand(age)}" />
+                    </p:overlayPanel>
+
                 </p:dataGrid>
             </h:form>
         </ui:define>
