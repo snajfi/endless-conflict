@@ -9,7 +9,7 @@
                 <p:outputLabel value="Password:" />
                 <p:inputText id="password" type="password" value="#{loginBean.password}" />
                 <p:commandButton icon="pi pi-caret-right" process="@this,password @this,login"
-                                 update="loginMessages @form" value="Login"
+                                 update="loginMessages @form mainForm:ages" value="Login"
                                  action="#{loginBean.authenticatePlayer}" />
                 <p:commandButton icon="pi pi-caret-right" value="Registration" id="registrationButton" />
                 <p:overlayPanel for="registrationButton" dynamic="true" showCloseIcon="true">

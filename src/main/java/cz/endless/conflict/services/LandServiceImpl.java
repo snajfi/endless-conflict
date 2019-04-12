@@ -7,6 +7,8 @@ import cz.endless.conflict.entities.age.Age;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 /**
  * Created by dobeji1 on 12.04.2019.
@@ -25,7 +27,11 @@ public class LandServiceImpl implements LandService {
     }
 
     @Override
-    public boolean isLandInAge(Land land, Age age) {
-        return age.getLands().contains(land);
+    public boolean isLandNameAvailableInAge(String name, Age age) {
+        TypedQuery<Land> query = entityManager.createNamedQuery(Land.GET_LAND_BY_NAME_AND_AGE,Land.class);
+        query.setParameter("name", name);
+        query.setParameter("age", age);
+        List<Land> resultList = query.getResultList();
+        return resultList.isEmpty();
     }
 }

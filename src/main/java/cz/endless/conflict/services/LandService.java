@@ -11,6 +11,5 @@ public interface LandService {
 
     void createLand(Land land);
 
-    boolean isLandInAge(Land land, Age age);
-
+    boolean isLandNameAvailableInAge(String name, Age age);
 }

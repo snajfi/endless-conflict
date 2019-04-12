@@ -9,12 +9,12 @@
 
     <ui:composition template="/resources/templates/publicPartTemplate.xhtml">
 
-
         <ui:define name="topMenu">
         </ui:define>
         <ui:define name="content">
-            <h:form>
-                <p:dataGrid var="age" value="#{ageBean.ages}" columns="3"
+            <h:form id="mainForm">
+                <p:dataGrid var="age" value="#{ageBean.ages}" rowKey="#{age.id}"
+                            columns="3" rowIndexVar="rowId"
                             layout="grid" rows="12" id="ages">
 
                     <f:facet name="header">
@@ -41,8 +41,10 @@
                                         <h:outputText value="Victory conditions" />
                                         <h:outputText value=" (all required)" rendered="#{age.winConditions.allRequired}" />
                                     </f:facet>
-                                    <h:outputText value="#{winCondition.winConditionType.key}" />
-                                    <h:outputText value=": #{winCondition.value}" />
+                                    <h:outputText value="#{winCondition.winConditionType.key}: " />
+                                    <h:outputText value="#{winCondition.value}">
+                                        <f:convertNumber groupingUsed="true" locale="cs_CZ" />
+                                    </h:outputText>
                                 </p:dataList>
                             </p:tab>
                             <p:tab title="Age configuration">
@@ -52,20 +54,27 @@
                                 <h:outputText value="#{age.ageConfiguration.lockedStack}"/><br />
                             </p:tab>
                         </p:accordionPanel>
+                        <br />
+                        <p:linkButton value="Enter age" rendered="#{ageBean.haveLoggedPlayerLandInAge(age)}"
+                                      outcome="game_main" />
+
+                        <p:commandButton value="Create land" process="landName" ajax="true"
+                                         rendered="#{loggedPlayerBean.playerLogged and !ageBean.haveLoggedPlayerLandInAge(age)}"
+                                         id="createLandButton"/>
+                        <p:overlayPanel for="createLandButton" dynamic="true" showCloseIcon="true">
+                            <h:panelGrid columns="3">
+                                <h:outputText value="Name: " />
+                                <p:inputText value="#{landBean.newLandName}" id="landName" />
+                                <p:commandButton value="Create land"
+                                                 action="#{landBean.createLand(age)}" update="createLandMessage"/>
+                            </h:panelGrid>
+                            <p:messages id="createLandMessage">
+                            </p:messages>
+                        </p:overlayPanel>
                     </p:panel>
-
-                    <p:linkButton value="Enter age" rendered="#{ageBean.haveLoggedPlayerLandInAge(age)}"
-                                  outcome="game_main" />
-                    <p:commandButton value="Create land" action="#{ageBean.createLand(age)}"
-                                     rendered="#{loggedPlayerBean.playerLogged and !ageBean.haveLoggedPlayerLandInAge(age)}"
-                                     id="createLandButton" />
-                    <p:overlayPanel for="createLandButton" dynamic="true" showCloseIcon="true">
-                        <h:outputText value="Name" />
-                        <p:inputText value="#{landBean.newLandName}" />
-                        <p:commandButton  value="Create land" action="#{landBean.createLand(age)}" />
-                    </p:overlayPanel>
-
                 </p:dataGrid>
+
+
             </h:form>
         </ui:define>
 

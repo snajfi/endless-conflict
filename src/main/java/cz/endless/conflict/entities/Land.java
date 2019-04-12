@@ -9,11 +9,17 @@ import java.util.Objects;
 /**
  * Created by dobeji1 on 12.04.2019.
  */
+@NamedQueries({
+        @NamedQuery(name = Land.GET_LAND_BY_NAME_AND_AGE,
+                query = "select l from Land l where l.name = :name and l.age = :age")
+})
 @Table(name = "LAND")
 @Entity
 public class Land implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    public static final String GET_LAND_BY_NAME_AND_AGE = "Land.GET_LAND_BY_NAME_AND_AGE";
 
     @Id
     @Column(name = "ID")
