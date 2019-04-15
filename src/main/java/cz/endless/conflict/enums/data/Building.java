@@ -18,7 +18,7 @@ public enum Building {
     WATCHTOWER("Watchtower descr.",5,false,new MaintenanceBuilder(Resource.GOLD,0.18).build(),null, Collections.emptyList()),
     BUILDERS_WORKSHOP("Builders workshop descr.",5,false,new MaintenanceBuilder(Resource.WOOD,0.3).build(),null, Collections.emptyList());
 
-    public static final Map<Resource,Integer> defaultPriceForBuilding = new HashMap<>();
+    protected static final Map<Resource,Integer> defaultPriceForBuilding = new HashMap<>();
 
     static {
         defaultPriceForBuilding.put(Resource.GOLD,100);

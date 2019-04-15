@@ -63,7 +63,7 @@ public class AgeBean implements Serializable {
 
     public String saveNewAge() {
         for (WinCondition winCondition : newAge.getWinConditions().getWinCondition()) {
-            if (winCondition.getWinConditionType() == null || winCondition.getWinConditionType().equals("")) {
+            if (winCondition.getWinConditionType() == null) {
                 utilsService.addLocalizedMessage("errorWinConditionMustBeFilled", FacesMessage.SEVERITY_ERROR);
                 return "";
             }

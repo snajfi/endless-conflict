@@ -18,8 +18,12 @@
 
         <p:toolbar>
             <f:facet name="left">
-                <h:outputText value="#{loggedPlayerBean.playedLand.age.description}" /><br />
-                <h:outputText value="Land: #{loggedPlayerBean.playedLand.name} (##{loggedPlayerBean.playedLand.landInAgeId})" />
+                <div class="topToolbar">
+                    <h:outputText value="#{loggedPlayerBean.playedLand.age.description}" /><br />
+                    <h:outputText value="Land: #{loggedPlayerBean.playedLand.name} (##{loggedPlayerBean.playedLand.landInAgeId})" />
+                </div>
+                <div class="topToolbar">
+                </div>
             </f:facet>
             <f:facet name="right">
                 <ui:include src="/WEB-INF/includes/login.xhtml"/>

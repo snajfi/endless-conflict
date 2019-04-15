@@ -19,7 +19,7 @@
 
             <h:panelGrid columns="3" rendered="#{null ne loggedPlayerBean.loggedPlayer}">
                 <p:outputLabel value="Logged user:" />
-                <p:outputLabel value="#{loggedPlayerBean.loggedPlayer.nickname}" />
+                <p:outputLabel value="#{loggedPlayerBean.loggedPlayer.nickname} (##{loggedPlayerBean.loggedPlayer.id})" />
                 <p:commandButton icon="pi pi-caret-right" value="Logout" action="#{loggedPlayerBean.lougout}" update="@form" />
             </h:panelGrid>
 
