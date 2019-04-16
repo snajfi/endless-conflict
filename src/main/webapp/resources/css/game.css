@@ -19,7 +19,11 @@ body {
     padding: 7px !important;
 }
 
-.topToolbar {
+#topToolbar {
+     height: 56px;
+ }
+
+.topToolbarBox {
     float: left;
     margin-right: 10px;
 }

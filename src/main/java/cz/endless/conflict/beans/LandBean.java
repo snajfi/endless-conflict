@@ -53,6 +53,11 @@ public class LandBean implements Serializable {
         return "game_main";
     }
 
+    public String leaveLand() {
+        loggedPlayerBean.setPlayedLand(null);
+        return "public_main";
+    }
+
     public String getNewLandName() {
         return newLandName;
     }
