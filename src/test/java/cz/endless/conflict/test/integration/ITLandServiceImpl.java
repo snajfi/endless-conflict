@@ -36,10 +36,9 @@ class ITLandServiceImpl {
     private static EntityManager entityManager;
 
     private static LandService landService;
-    private static AgeService ageService;
-    private static PlayerService playerService;
 
     private static Age testingAge;
+    private static Age testingAge2;
     private static Land testingLand;
     private static Player testingPlayer;
 
@@ -65,13 +64,13 @@ class ITLandServiceImpl {
         field.setAccessible(true);
         field.set(landService,entityManager);
 
-        ageService = new AgeServiceImpl();
+        AgeService ageService = new AgeServiceImpl();
 
         Field field2 = ageService.getClass().getDeclaredField("entityManager");
         field2.setAccessible(true);
         field2.set(ageService,entityManager);
 
-        playerService = new PlayerServiceImpl();
+        PlayerService playerService = new PlayerServiceImpl();
 
         Field field3 = playerService.getClass().getDeclaredField("entityManager");
         field3.setAccessible(true);
@@ -83,6 +82,10 @@ class ITLandServiceImpl {
         testingAge = new Age();
         testingAge.setStartedAt(new Date());
         testingAge.setNumber(1);
+
+        testingAge2 = new Age();
+        testingAge2.setStartedAt(new Date());
+        testingAge2.setNumber(2);
 
         testingLand = new Land();
         testingLand.setName("name");
@@ -98,6 +101,7 @@ class ITLandServiceImpl {
         entityManager.getTransaction().begin();
         testingPlayer = playerService.saveNewPlayer(testingPlayer);
         testingAge = ageService.createNewAge(testingAge);
+        testingAge2 = ageService.createNewAge(testingAge2);
         entityManager.getTransaction().commit();
 
         testingLand.setPlayer(testingPlayer);
@@ -134,6 +138,12 @@ class ITLandServiceImpl {
     @Order(5)
     void getNextAgeNumberTest() {
         assertTrue(landService.getLastLandInAgeId(testingAge)==11);
+    }
+
+    @Test
+    @Order(6)
+    void getNextAgeNumberTest2() {
+        assertTrue(landService.getLastLandInAgeId(testingAge2)==10);
     }
 
     @BeforeEach
