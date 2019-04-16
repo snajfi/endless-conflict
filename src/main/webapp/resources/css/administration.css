@@ -1,0 +1,19 @@
+body {
+    background-color: #3f3f3f;
+    color: #dedede;
+}
+
+.content{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.topMenu {
+    clear: both;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.ui-messages-error {
+    padding: 7px !important;
+}
