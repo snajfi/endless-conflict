@@ -20,10 +20,8 @@ public class LandServiceImpl implements LandService {
     private EntityManager entityManager;
 
     @Override
-    public void createLand(Land land) {
-        Player player = land.getPlayer();
-        player.getLands().add(land);
-        entityManager.merge(player);
+    public Land createLand(Land land) {
+        return entityManager.merge(land);
     }
 
     @Override
@@ -49,7 +47,7 @@ public class LandServiceImpl implements LandService {
 
 
     @Override
-    public int getNextAgeNumber(Age age) {
+    public int getLastLandInAgeId(Age age) {
         TypedQuery<Integer> query = entityManager.createNamedQuery(Land.GET_LAST_LAND_IN_AGE_ID,Integer.class);
         query.setParameter("age", age);
         Integer landId = query.getSingleResult();

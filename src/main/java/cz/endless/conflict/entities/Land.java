@@ -3,7 +3,6 @@ package cz.endless.conflict.entities;
 import cz.endless.conflict.entities.age.Age;
 
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -39,7 +38,7 @@ public class Land implements Serializable {
     @Column(name = "LAND_IN_AGE_ID")
     private Integer landInAgeId;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "PLAYER_ID")
     private Player player;
 

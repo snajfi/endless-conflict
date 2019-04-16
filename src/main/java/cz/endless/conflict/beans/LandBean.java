@@ -36,8 +36,9 @@ public class LandBean implements Serializable {
             Land land = new Land();
             land.setName(newLandName);
             land.setPlayer(loggedPlayerBean.getLoggedPlayer());
+            loggedPlayerBean.getLoggedPlayer().getLands().add(land);
             land.setAge(age);
-            land.setLandInAgeId(landService.getNextAgeNumber(age));
+            land.setLandInAgeId(landService.getLastLandInAgeId(age));
             landService.createLand(land);
             loggedPlayerBean.setPlayedLand(landService.findLandByPlayerAndAge(loggedPlayerBean.getLoggedPlayer(), age));
             return "game_main";
