@@ -17,3 +17,7 @@ body {
 .ui-messages-error {
     padding: 7px !important;
 }
+
+#loginForm {
+    float: right;
+}
