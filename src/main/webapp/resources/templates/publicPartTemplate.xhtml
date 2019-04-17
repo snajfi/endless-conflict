@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
     <title>Endeless conflict</title>
@@ -14,11 +15,30 @@
 
     <div class="wrap">
 
-        <ui:include src="/WEB-INF/includes/login.xhtml"/>
+        <div class="authentication">
+
+            <ui:include src="/WEB-INF/includes/login.xhtml"/>
+
+        </div>
+
         <div class="topMenu">
             <ui:insert name="topMenu">
 
-                menu
+                <h:form>
+
+                    <p:tabMenu activeIndex="#{param.i}">
+                        <p:menuitem value="Main" outcome="public_main" icon="pi pi-star">
+                            <f:param name="i" value="0" />
+                        </p:menuitem>
+
+                        <p:menuitem value="Ages" outcome="public_main" icon="pi pi-star">
+                            <f:param name="i" value="1" />
+                        </p:menuitem>
+
+                    </p:tabMenu>
+
+
+                </h:form>
 
             </ui:insert>
         </div>
