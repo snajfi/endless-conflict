@@ -18,8 +18,8 @@ public interface ConversationService {
 
     Conversation getConversationById(Long id);
 
-    List<Message> getMessagesForConversationAndOwner(Conversation conversation, Player owner);
+    List<Message> getMessagesForConversationAndRecipient(Conversation conversation, Player recipient);
 
-    Message getLastMessageForConversationAndOwner(Conversation conversation, Player owner);
+    Message getLastMessageForConversationAndRecipient(Conversation conversation, Player recipient);
 
 }

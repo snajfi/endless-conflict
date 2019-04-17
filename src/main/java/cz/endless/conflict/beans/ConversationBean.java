@@ -42,8 +42,8 @@ public class ConversationBean implements Serializable {
         lastMessageInConversation = getLastMessageInConversation(conversation);
     }
 
-    public List<Message> getMessagesForOwnerAndConversation() {
-        return conversationService.getMessagesForConversationAndOwner(conversation, loggedPlayerBean.getLoggedPlayer());
+    public List<Message> getMessagesForConversationAndRecipient() {
+        return conversationService.getMessagesForConversationAndRecipient(conversation, loggedPlayerBean.getLoggedPlayer());
     }
 
     public String formatRecipients() {
@@ -56,7 +56,7 @@ public class ConversationBean implements Serializable {
     }
 
     private Message getLastMessageInConversation(Conversation conversation) {
-        return conversationService.getLastMessageForConversationAndOwner(conversation, loggedPlayerBean.getLoggedPlayer());
+        return conversationService.getLastMessageForConversationAndRecipient(conversation, loggedPlayerBean.getLoggedPlayer());
     }
 
     public void send() {

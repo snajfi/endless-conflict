@@ -11,8 +11,8 @@ import java.util.Objects;
  * Created by dobeji1 on 17.04.2019.
  */
 @NamedQueries({
-        @NamedQuery(name = Message.GET_MESSAGES_FOR_CONVERSATION_AND_OWNER,
-                query = "select m from Message m where m.conversation = :conversation and m.owner = :owner order by m.date desc ")
+        @NamedQuery(name = Message.GET_MESSAGES_FOR_CONVERSATION_AND_RECIPIENT,
+                query = "select m from Message m where m.conversation = :conversation and m.recipient = :recipient order by m.date desc ")
 
 })
 @Table(name = "MESSAGE")
@@ -21,7 +21,7 @@ public class Message implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public static final String GET_MESSAGES_FOR_CONVERSATION_AND_OWNER = "Message.GET_MESSAGES_FOR_CONVERSATION_AND_OWNER";
+    public static final String GET_MESSAGES_FOR_CONVERSATION_AND_RECIPIENT = "Message.GET_MESSAGES_FOR_CONVERSATION_AND_RECIPIENT";
 
     @Id
     @Column(name = "ID")
@@ -37,8 +37,8 @@ public class Message implements Serializable {
     private Player sender;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "OWNER_ID")
-    private Player owner;
+    @JoinColumn(name = "RECIPIENT_ID")
+    private Player recipient;
 
     @Column(name = "DATE")
     private Date date;
@@ -88,12 +88,12 @@ public class Message implements Serializable {
         this.sender = sender;
     }
 
-    public Player getOwner() {
-        return owner;
+    public Player getRecipient() {
+        return recipient;
     }
 
-    public void setOwner(Player owner) {
-        this.owner = owner;
+    public void setRecipient(Player recipient) {
+        this.recipient = recipient;
     }
 
     public Date getDate() {

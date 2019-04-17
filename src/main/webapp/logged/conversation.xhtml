@@ -26,7 +26,7 @@
                                  rows="10" styleClass="width100" /><br />
                 <p:commandButton value="Send" action="#{conversationBean.send}" update="@form messages" /><br />
                 <br />
-                <p:dataScroller value="#{conversationBean.messagesForOwnerAndConversation}" var="message" chunkSize="10">
+                <p:dataScroller value="#{conversationBean.getMessagesForConversationAndRecipient}" var="message" chunkSize="10">
                     <p:outputPanel>
                         <p:panel>
                             <f:facet name="header">

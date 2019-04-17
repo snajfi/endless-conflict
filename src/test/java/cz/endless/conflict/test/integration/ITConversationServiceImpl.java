@@ -120,14 +120,14 @@ class ITConversationServiceImpl {
 
     @Test
     @Order(5)
-    void getMessagesForConversationAndOwnerTest() {
-        assertTrue(conversationService.getMessagesForConversationAndOwner(testingConversation, testingPlayer).size()==2);
+    void getMessagesForConversationAndRecipientTest() {
+        assertTrue(conversationService.getMessagesForConversationAndRecipient(testingConversation, testingPlayer).size()==2);
     }
 
     @Test
     @Order(6)
-    void getLastMessageForConversationAndOwnerTest() {
-        assertEquals(LAST_MESSAGE, conversationService.getLastMessageForConversationAndOwner(testingConversation, testingPlayer).getText());
+    void getLastMessageForConversationAndRecipientTest() {
+        assertEquals(LAST_MESSAGE, conversationService.getLastMessageForConversationAndRecipient(testingConversation, testingPlayer).getText());
     }
 
 

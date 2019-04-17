@@ -32,7 +32,7 @@ public class ConversationServiceImpl implements ConversationService {
             message.setConversation(conversation);
             message.setRead(false);
             message.setSender(sender);
-            message.setOwner(player);
+            message.setRecipient(player);
             messages.add(message);
             player.getConversations().add(conversation);
         }
@@ -50,7 +50,7 @@ public class ConversationServiceImpl implements ConversationService {
             message.setConversation(conversation);
             message.setRead(false);
             message.setSender(sender);
-            message.setOwner(player);
+            message.setRecipient(player);
             messages.add(message);
         }
         conversation.getMessages().addAll(messages);
@@ -69,18 +69,18 @@ public class ConversationServiceImpl implements ConversationService {
     }
 
     @Override
-    public List<Message> getMessagesForConversationAndOwner(Conversation conversation, Player owner) {
-        TypedQuery<Message> query = entityManager.createNamedQuery(Message.GET_MESSAGES_FOR_CONVERSATION_AND_OWNER,Message.class);
+    public List<Message> getMessagesForConversationAndRecipient(Conversation conversation, Player recipient) {
+        TypedQuery<Message> query = entityManager.createNamedQuery(Message.GET_MESSAGES_FOR_CONVERSATION_AND_RECIPIENT,Message.class);
         query.setParameter("conversation", conversation);
-        query.setParameter("owner", owner);
+        query.setParameter("recipient", recipient);
         return query.getResultList();
     }
 
     @Override
-    public Message getLastMessageForConversationAndOwner(Conversation conversation, Player owner) {
-        TypedQuery<Message> query = entityManager.createNamedQuery(Message.GET_MESSAGES_FOR_CONVERSATION_AND_OWNER,Message.class);
+    public Message getLastMessageForConversationAndRecipient(Conversation conversation, Player recipient) {
+        TypedQuery<Message> query = entityManager.createNamedQuery(Message.GET_MESSAGES_FOR_CONVERSATION_AND_RECIPIENT,Message.class);
         query.setParameter("conversation", conversation);
-        query.setParameter("owner", owner);
+        query.setParameter("recipient", recipient);
         return query.setMaxResults(1).getSingleResult();
     }
 }
