@@ -1,5 +1,7 @@
 package cz.endless.conflict.entities;
 
+import cz.endless.conflict.entities.communication.Conversation;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -11,6 +13,8 @@ import java.util.Objects;
 @NamedQueries({
         @NamedQuery(name = Player.GET_ALL_PLAYERS,
                 query = "select p from Player p "),
+        @NamedQuery(name = Player.GET_PLAYER_BY_ID,
+                query = "select p from Player p where p.id = :id"),
         @NamedQuery(name = Player.GET_PLAYER_BY_NICKNAME,
                 query = "select p from Player p where p.nickname = :nickname"),
         @NamedQuery(name = Player.GET_PLAYER_BY_LOGIN,
@@ -18,7 +22,10 @@ import java.util.Objects;
         @NamedQuery(name = Player.GET_PLAYER_BY_LOGIN_AND_PASSWORD,
                 query = "select p from Player p where p.login = :login and p.password = :password"),
         @NamedQuery(name = Player.GET_PLAYER_BY_EMAIL,
-                query = "select p from Player p where p.email = :email")
+                query = "select p from Player p where p.email = :email"),
+        @NamedQuery(name = Player.GET_PLAYER_BY_HINT,
+                query = "SELECT p FROM Player p WHERE LOWER(p.nickname) LIKE :hint"),
+
 })
 @Table(name = "PLAYER")
 @Entity
@@ -27,10 +34,12 @@ public class Player implements Serializable {
     private static final long serialVersionUID = 1L;
 
     public static final String GET_ALL_PLAYERS = "Player.GET_ALL_PLAYERS";
+    public static final String GET_PLAYER_BY_ID = "Player.GET_PLAYER_BY_ID";
     public static final String GET_PLAYER_BY_NICKNAME = "Player.GET_PLAYER_BY_NICKNAME";
     public static final String GET_PLAYER_BY_LOGIN = "Player.GET_PLAYER_BY_LOGIN";
     public static final String GET_PLAYER_BY_LOGIN_AND_PASSWORD = "Player.GET_PLAYER_BY_LOGIN_AND_PASSWORD";
     public static final String GET_PLAYER_BY_EMAIL = "Player.GET_PLAYER_BY_EMAIL";
+    public static final String GET_PLAYER_BY_HINT = "Player.GET_PLAYER_BY_HINT";
 
 
     @Id
@@ -56,6 +65,13 @@ public class Player implements Serializable {
     @OneToMany(mappedBy = "player", cascade = CascadeType.ALL)
     private List<Land> lands;
 
+    @ManyToMany
+    @JoinTable(
+            name = "RECIPIENTS_IN_CONVERSATIONS",
+            joinColumns = @JoinColumn(name = "RECIPIENT_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "CONVERSATION_ID", referencedColumnName = "ID")
+    )
+    private List<Conversation> conversations;
 
     @Override
     public boolean equals(Object o) {
@@ -125,5 +141,13 @@ public class Player implements Serializable {
 
     public void setLands(List<Land> lands) {
         this.lands = lands;
+    }
+
+    public List<Conversation> getConversations() {
+        return conversations;
+    }
+
+    public void setConversations(List<Conversation> conversations) {
+        this.conversations = conversations;
     }
 }

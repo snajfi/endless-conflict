@@ -25,3 +25,7 @@ body {
 #loginForm {
     float: right;
 }
+
+.width100 {
+    width: 100%;
+}

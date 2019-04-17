@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:body>
+
+    <ui:composition template="/resources/templates/publicPartTemplate.xhtml">
+
+        <ui:define name="topMenu">
+        </ui:define>
+        <ui:define name="content">
+            <h:form>
+                <h:panelGrid columns="2">
+                    <p:outputLabel value="Recipients:" />
+                    <p:outputLabel value="#{conversationBean.formatRecipients()}" />
+
+                    <p:outputLabel value="Subject:" />
+                    <p:outputLabel value="#{conversationBean.conversation.subject}" />
+
+                </h:panelGrid>
+                <p:outputLabel value="New message:" /><br />
+                <p:inputTextarea value="#{conversationBean.message}" autoResize="false"
+                                 rows="10" styleClass="width100" /><br />
+                <p:commandButton value="Send" action="#{conversationBean.send}" update="@form messages" /><br />
+                <br />
+                <p:dataScroller value="#{conversationBean.messagesForOwnerAndConversation}" var="message" chunkSize="10">
+                    <p:outputPanel>
+                        <p:panel>
+                            <f:facet name="header">
+                                <h:outputText value="From: " />
+                                <h:outputText value="#{message.sender.nickname} | "/>
+
+                                <h:outputText value="Date: " />
+                                <h:outputText value="#{message.date}">
+                                    <f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss" />
+                                </h:outputText>
+                            </f:facet>
+                            <h:outputText value="#{message.text}" />
+                        </p:panel>
+                    </p:outputPanel>
+                </p:dataScroller>
+
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+
+</h:body>
+
+</html>

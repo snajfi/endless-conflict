@@ -23,6 +23,17 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
+    public Player getPlayerByNickname(String nickname) {
+        TypedQuery<Player> query = entityManager.createNamedQuery(Player.GET_PLAYER_BY_NICKNAME,Player.class);
+        query.setParameter("nickname", nickname);
+        List<Player> resultList = query.getResultList();
+        if (!resultList.isEmpty()) {
+            return resultList.get(0);
+        }
+        return null;
+    }
+
+    @Override
     public Player findPlayerByLogin(String login) {
         TypedQuery<Player> query = entityManager.createNamedQuery(Player.GET_PLAYER_BY_LOGIN,Player.class);
         query.setParameter("login", login);
@@ -36,6 +47,13 @@ public class PlayerServiceImpl implements PlayerService {
     @Override
     public List<Player> getAllPlayers() {
         return entityManager.createNamedQuery(Player.GET_ALL_PLAYERS,Player.class).getResultList();
+    }
+
+    @Override
+    public List<Player> getPlayerByHintNickname(String hint) {
+        TypedQuery<Player> select = entityManager.createNamedQuery(Player.GET_PLAYER_BY_HINT, Player.class);
+        select.setParameter("hint", formatParameterForLikeQuery(hint));
+        return select.getResultList();
     }
 
     @Override
@@ -66,4 +84,16 @@ public class PlayerServiceImpl implements PlayerService {
         query.setParameter("password",password);
         return !query.getResultList().isEmpty();
     }
+
+    private static String formatParameterForLikeQuery(String parameter) {
+        if (!isValidString(parameter)) {
+            return "%";
+        }
+        return "%" + parameter.toLowerCase() + "%";
+    }
+
+    private static boolean isValidString(String string) {
+        return string != null && string.length() > 0;
+    }
+
 }

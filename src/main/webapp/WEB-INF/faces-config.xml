@@ -44,6 +44,33 @@
     <navigation-rule>
         <from-view-id>*</from-view-id>
         <navigation-case>
+            <from-outcome>mailbox</from-outcome>
+            <to-view-id>/logged/mailbox.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>newConversation</from-outcome>
+            <to-view-id>/logged/newConversation.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>conversation</from-outcome>
+            <to-view-id>/logged/conversation.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
             <from-outcome>administration_main</from-outcome>
             <to-view-id>/administration/index.xhtml</to-view-id>
             <redirect/>

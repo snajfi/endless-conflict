@@ -17,7 +17,8 @@
                 </p:overlayPanel>
             </h:panelGrid>
 
-            <h:panelGrid columns="3" rendered="#{null ne loggedPlayerBean.loggedPlayer}">
+            <h:panelGrid columns="4" rendered="#{null ne loggedPlayerBean.loggedPlayer}">
+                <p:linkButton icon="fa fa-envelope" outcome="mailbox" />
                 <p:outputLabel value="Logged user:" />
                 <p:outputLabel value="#{loggedPlayerBean.loggedPlayer.nickname} (##{loggedPlayerBean.loggedPlayer.id})" />
                 <p:commandButton icon="pi pi-caret-right" value="Logout" action="#{loggedPlayerBean.lougout}" update="@form" />

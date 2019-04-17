@@ -15,9 +15,13 @@ public interface PlayerService {
      */
     Player saveNewPlayer(Player player);
 
+    Player getPlayerByNickname(String nickname);
+
     Player findPlayerByLogin(String login);
 
     List<Player> getAllPlayers();
+
+    List<Player> getPlayerByHintNickname(String hint);
 
     Boolean isNicknameAvailable(String nickname);
 
