@@ -39,7 +39,6 @@ public class ConversationBean implements Serializable {
         if (id!=null) {
             conversation = conversationService.getConversationById(Long.valueOf(id));
         }
-        lastMessageInConversation = getLastMessageInConversation(conversation);
     }
 
     public List<Message> getMessagesForConversationAndRecipient() {
@@ -55,7 +54,11 @@ public class ConversationBean implements Serializable {
         return stringBuilder.toString().substring(0, stringBuilder.length()-2);
     }
 
-    private Message getLastMessageInConversation(Conversation conversation) {
+    public boolean isUserAllowedToReadConversation() {
+        return conversation.getRecipients().contains(loggedPlayerBean.getLoggedPlayer());
+    }
+
+    public Message getLastMessageInConversation(Conversation conversation) {
         return conversationService.getLastMessageForConversationAndRecipient(conversation, loggedPlayerBean.getLoggedPlayer());
     }
 

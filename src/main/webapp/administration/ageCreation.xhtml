@@ -28,10 +28,10 @@
                     <p:inputText value="#{ageBean.newAge.description}" />
 
                     <h:outputText value="Started at" required="true" />
-                    <p:calendar value="#{ageBean.newAge.startedAt}" pattern="dd.MM.yyyy HH:mm" widgetVar="startedAtCalendar" mindate="#{ageBean.today()}"/>
+                    <p:calendar value="#{ageBean.newAge.startedAt}" pattern="dd.MM.yyyy HH:00" widgetVar="startedAtCalendar" mindate="#{ageBean.today()}"/>
 
                     <h:outputText value="Ended at" required="true" />
-                    <p:calendar value="#{ageBean.newAge.endedAt}" pattern="dd.MM.yyyy HH:mm" widgetVar="endedAtCalendar" mindate="#{ageBean.today()}"/>
+                    <p:calendar value="#{ageBean.newAge.endedAt}" pattern="dd.MM.yyyy HH:00" widgetVar="endedAtCalendar" mindate="#{ageBean.today()}"/>
 
                     <h:outputText value="Configuration" />
                     <p:selectOneMenu value="#{ageBean.ageConfiguration}" converter="#{ageConfigurationConverter}">
