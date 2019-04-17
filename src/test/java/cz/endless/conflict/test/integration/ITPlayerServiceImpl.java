@@ -137,6 +137,30 @@ class ITPlayerServiceImpl {
         assertFalse(playerService.isNicknameAvailable(testingPlayer.getNickname()));
     }
 
+    @Test
+    @Order(11)
+    void getPlayerByNicknameTest() {
+        assertNotNull(playerService.getPlayerByNickname(testingPlayer.getNickname()));
+    }
+
+    @Test
+    @Order(12)
+    void getPlayerByNicknameTest2() {
+        assertNull(playerService.getPlayerByNickname("nonExisting"));
+    }
+
+    @Test
+    @Order(13)
+    void getPlayerByHintNicknameTest() {
+        assertTrue(playerService.getPlayerByHintNickname("Nickname").size() == 1);
+    }
+
+    @Test
+    @Order(14)
+    void getPlayerByHintNicknameTest2() {
+        assertTrue(playerService.getPlayerByHintNickname("nonExisting").isEmpty());
+    }
+
     @BeforeEach
     private void startTransaction() {
         entityManager.getTransaction().begin();
