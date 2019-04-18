@@ -23,11 +23,15 @@ public class LoginBean implements Serializable {
     @Inject private PlayerService playerService;
     @Inject private UtilsService utilsService;
     @Inject private LoggedPlayerBean loggedPlayerBean;
+    @Inject private ImportBean importBean;
 
     private String login = "";
     private String password = "";
 
     public String authenticatePlayer() {
+        if (!importBean.isDefaultDataImported()) {
+            importBean.importData();
+        }
         if (login == null || password == null || !playerService.authenticatePlayer(login, password)) {
             utilsService.addLocalizedMessage("errorLoginWrongCombination", "loginMessages", FacesMessage.SEVERITY_ERROR);
             return "";

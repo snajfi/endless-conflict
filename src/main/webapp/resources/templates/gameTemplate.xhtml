@@ -18,11 +18,6 @@
         <p:toolbar id="topToolbar">
             <f:facet name="left">
                 <div class="topToolbarBox">
-                    <h:form>
-                        <p:commandButton icon="pi pi-times" value="Leave land" action="#{landBean.leaveLand()}" />
-                    </h:form>
-                </div>
-                <div class="topToolbarBox">
                     <h:outputText value="#{loggedPlayerBean.playedLand.age.description}" /><br />
                     <h:outputText value="Land: #{loggedPlayerBean.playedLand.name} (##{loggedPlayerBean.playedLand.landInAgeId})" /><br />
                 </div>

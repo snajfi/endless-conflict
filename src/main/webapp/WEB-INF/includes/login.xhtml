@@ -3,25 +3,27 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
         <h:form id="loginForm">
-            <h:panelGrid columns="6" rendered="#{null eq loggedPlayerBean.loggedPlayer}">
+            <h:panelGrid columns="5" rendered="#{null eq loggedPlayerBean.loggedPlayer}">
                 <p:outputLabel value="Login:" />
                 <p:inputText id="login" value="#{loginBean.login}" />
                 <p:outputLabel value="Password:" />
                 <p:inputText id="password" type="password" value="#{loginBean.password}" />
-                <p:commandButton icon="pi pi-caret-right" process="@this,password @this,login"
-                                 update="loginMessages @form mainForm:ages" value="Login"
+                <p:commandButton icon="pi pi-sign-in" process="@this,password @this,login"
+                                 update="loginMessages @form mainForm :topMenu" value="Login"
                                  action="#{loginBean.authenticatePlayer}" />
-                <p:commandButton icon="pi pi-caret-right" value="Registration" id="registrationButton" />
-                <p:overlayPanel for="registrationButton" dynamic="true" showCloseIcon="true">
-                    <ui:include src="/WEB-INF/includes/registration.xhtml"/>
-                </p:overlayPanel>
             </h:panelGrid>
 
             <h:panelGrid columns="4" rendered="#{null ne loggedPlayerBean.loggedPlayer}">
-                <p:linkButton icon="fa fa-envelope" outcome="mailbox" />
+                <p:linkButton icon="pi pi-envelope" outcome="mailbox">
+                    <f:param name="i" value="4" />
+                </p:linkButton>
                 <p:outputLabel value="Logged user:" />
                 <p:outputLabel value="#{loggedPlayerBean.loggedPlayer.nickname} (##{loggedPlayerBean.loggedPlayer.id})" />
-                <p:commandButton icon="pi pi-caret-right" value="Logout" action="#{loggedPlayerBean.lougout}" update="@form" />
+                <p:commandButton icon="pi pi-sign-out" ajax="false" value="Logout" action="#{loggedPlayerBean.logout}"
+                                 update="@form topMenu" rendered="#{loggedPlayerBean.playedLand eq null}" />
+                <p:commandButton icon="pi pi-times" value="Leave land" action="#{landBean.leaveLand()}"
+                                 rendered="#{loggedPlayerBean.playedLand ne null}" />
+
             </h:panelGrid>
 
             <p:messages id="loginMessages" styleClass="loginMessages">

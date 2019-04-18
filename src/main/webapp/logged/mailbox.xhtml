@@ -9,10 +9,8 @@
 
     <ui:composition template="/resources/templates/publicPartTemplate.xhtml">
 
-        <ui:define name="topMenu">
-        </ui:define>
         <ui:define name="content">
-            <h:form>
+            <h:form id="mainForm">
                 <p:linkButton outcome="newConversation" value="New conversation" />
                 <p:dataTable value="#{loggedPlayerBean.loggedPlayer.conversations}" var="conversation">
                     <p:column headerText="Subject">

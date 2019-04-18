@@ -40,8 +40,8 @@ public class LoggedPlayerBean implements Serializable {
         this.playedLand = playedLand;
     }
 
-    public String lougout() {
+    public String logout() {
         setLoggedPlayer(null);
-        return "public_main";
+        return "";
     }
 }

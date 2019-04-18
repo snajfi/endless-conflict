@@ -29,7 +29,6 @@ public class ConversationBean implements Serializable {
 
     private Conversation conversation;
     private String message;
-    private Message lastMessageInConversation;
 
     @PostConstruct
     private void searchForParameter() {
@@ -83,11 +82,4 @@ public class ConversationBean implements Serializable {
         this.message = message;
     }
 
-    public Message getLastMessageInConversation() {
-        return lastMessageInConversation;
-    }
-
-    public void setLastMessageInConversation(Message lastMessageInConversation) {
-        this.lastMessageInConversation = lastMessageInConversation;
-    }
 }
