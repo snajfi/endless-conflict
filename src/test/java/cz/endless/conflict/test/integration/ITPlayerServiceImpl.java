@@ -39,6 +39,8 @@ class ITPlayerServiceImpl {
 
     private static Player testingPlayer;
 
+    private static  EntityManagerFactory emf;
+
     @BeforeAll
     static void init() throws NoSuchFieldException, IllegalAccessException {
 
@@ -50,7 +52,7 @@ class ITPlayerServiceImpl {
 
         properties.put("javax.persistence.schema-generation.database.action","create");
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("integrationTesting",properties);
+        emf = Persistence.createEntityManagerFactory("integrationTesting",properties);
 
         entityManager = emf.createEntityManager();
 
@@ -174,7 +176,11 @@ class ITPlayerServiceImpl {
     }
 
     @BeforeEach
-    private void startTransaction() {
+    private void startTransaction() throws IllegalAccessException, NoSuchFieldException {
+        entityManager = emf.createEntityManager();
+//        Field field = playerService.getClass().getDeclaredField("entityManager");
+//        field.setAccessible(true);
+//        field.set(playerService,entityManager );
         entityManager.getTransaction().begin();
     }
 
